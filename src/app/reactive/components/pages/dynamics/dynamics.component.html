@@ -3,41 +3,23 @@
 
 <div class="row">
     <div class="col">
-        
         <form (ngSubmit)="saveData()" autocomplete="off" [formGroup]="miFormulario">
-            
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Nombre</label>
+                <label class="col-sm-3 col-form-label"> Nombre </label>
                 <div class="col-sm-9">
-                    <input 
-                        class="form-control" 
-                        placeholder="Nombre"
-                        formControlName="nombre"
-                    >
-                    <span 
-                        class="text-form text-danger"
-                        *ngIf="validarCampo('nombre')"
-                    >
+                    <input  class="form-control" placeholder="Nombre" formControlName="nombre">
+                    <span class="text-form text-danger" *ngIf="validarCampo('nombre')">
                         El campo es obligatorio
                     </span>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Agregar</label>
+                <label class="col-sm-3 col-form-label"> Agregar </label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <input 
-                            class="form-control"
-                            [formControl]="nuevoFavorito"
-                            placeholder="Agregar favorito"
-                            (keyup.enter)="add()"
-                        >
-                        <button
-                            class="btn btn-outline-primary"
-                            type="button"
-                            (click)="add()"
-                        >   
+                        <input  class="form-control" [formControl]="nuevoFavorito" placeholder="Agregar favorito" (keyup.enter)="add()">
+                        <button class="btn btn-outline-primary" type="button" (click)="add()">   
                             Agregar
                         </button>
                     </div>
@@ -45,38 +27,23 @@
             </div>
 
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Favoritos</label>
+                <label class="col-sm-3 col-form-label"> Favoritos </label>
                 <div class="col-sm-9" formArrayName="favoritos">
-
-                    <div class="input-group mb-1"
-                        *ngFor="let favorito of favoritosArr.controls; let i = index"
-                    >
+                    <div class="input-group mb-1" *ngFor="let favorito of favoritosArr.controls; let i = index">
                         <input class="form-control mb-1" [formControlName]="i">
-                        <button
-                            class="btn btn-outline-danger"
-                            type="button"
-                            (click)="delete(i)"
-                        >   
+                        <button class="btn btn-outline-danger" type="button" (click)="delete(i)">   
                             Eliminar
                         </button>
                     </div>
-
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button 
-                        type="submit" 
-                        class="btn btn-primary float-end"
-                    >
-                        Guardar
-                    </button>
+                    <button type="submit" class="btn btn-primary float-end"> Guardar </button>
                 </div>
             </div>
-
         </form>
-
     </div>
 </div>
 

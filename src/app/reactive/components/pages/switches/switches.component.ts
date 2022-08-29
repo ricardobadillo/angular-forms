@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-switches',
   templateUrl: './switches.component.html',
-  styleUrls: ['./switches.component.css']
+  styleUrls: ['./switches.component.scss']
 })
 export class SwitchesComponent implements OnInit {
 

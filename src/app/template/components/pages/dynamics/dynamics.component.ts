@@ -1,27 +1,32 @@
-import { Component } from '@angular/core';
+// Angular.
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 
-interface Persona {
-  nombre: string;
-  favoritos: Favorito[];
-}
 
 interface Favorito {
   id: number;
   nombre: string;
 }
 
+interface Persona {
+  nombre: string;
+  favoritos: Favorito[];
+}
+
 @Component({
   selector: 'app-dynamics',
   templateUrl: './dynamics.component.html',
-  styleUrls: ['./dynamics.component.css']
+  styleUrls: ['./dynamics.component.scss']
 })
 export class DynamicsComponent {
+
+  @ViewChild('miFormulario') miFormulario!: NgForm;
 
   nuevoFavorito: string = '';
 
   persona: Persona = {
-    nombre: 'Ricardo',
+    nombre: '',
     favoritos: [
       { id: 1, nombre: 'Doom' },
       { id: 2, nombre: 'Outlast' }
@@ -29,7 +34,7 @@ export class DynamicsComponent {
   }
 
   saveData() {
-    console.log('');
+    console.log(this.persona);
   }
 
   add() {

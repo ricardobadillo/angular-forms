@@ -1,18 +1,24 @@
+// Angular.
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-basics',
   templateUrl: './basics.component.html',
-  styleUrls: ['./basics.component.css']
+  styleUrls: ['./basics.component.scss']
 })
 export class BasicsComponent implements OnInit {
 
-  // miFormulario: FormGroup = new FormGroup({
-  //   producto: new FormControl('Galletas'),
-  //   precio: new FormControl(1),
-  //   existencia: new FormControl(10)
-  // });
+  /*
+    ! Formulario de manera manual.
+    miFormulario: FormGroup = new FormGroup({
+      producto: new FormControl('Galletas'),
+      precio: new FormControl(1),
+      existencia: new FormControl(10)
+    });
+  */
 
   miFormulario: FormGroup = this.fb.group({
     producto: [ , [
@@ -30,18 +36,19 @@ export class BasicsComponent implements OnInit {
   });
 
   ngOnInit(): void {
-      // this.miFormulario.setValue({
-      //   producto: 'Galletas',
-      //   precio: 1,
-      //   existencia: 10
-      // });
+    /*
+      this.miFormulario.setValue({
+        producto: 'Galletas',
+        precio: 1,
+        existencia: 10
+      });
+    */
   }
 
   constructor( private fb: FormBuilder ) { }
 
   validarCampo( campo: string ) {
-    return this.miFormulario.controls[campo].errors 
-        && this.miFormulario.controls[campo].touched;
+    return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched;
   }
   
   saveData() {

@@ -1,5 +1,8 @@
+// Angular.
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+
 
 const routes: Routes = [
   {
@@ -9,6 +12,10 @@ const routes: Routes = [
   {
     path: 'reactive',
     loadChildren: ()=> import('./reactive/reactive.module').then(m => m.ReactiveModule) 
+  },
+  {
+    path: 'validation',
+    loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule)
   },
   {
     path: '**',

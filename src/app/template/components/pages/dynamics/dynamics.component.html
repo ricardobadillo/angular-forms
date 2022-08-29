@@ -3,32 +3,26 @@
 
 <div class="row">
     <div class="col">
-        
         <form (ngSubmit)="saveData()" autocomplete="off" #miFormulario="ngForm">
-            
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Nombre</label>
+                <label class="col-sm-3 col-form-label"> Nombre </label>
                 <div class="col-sm-9">
                     <input 
                         class="form-control" 
                         name="nombre"
-                        [ngModel]="persona.nombre"
+                        [(ngModel)]="persona.nombre"
                         placeholder="Nombre"
                         minlength="1"
-                        ngModel
                         required
                     >
-                    <span 
-                        class="text-form text-danger"
-                        *ngIf="miFormulario.controls.nombre?.errors && miFormulario.controls.nombre?.touched"
-                    >
+                    <span class="text-form text-danger" *ngIf="miFormulario.controls.nombre?.errors && miFormulario.controls.nombre?.touched">
                         El campo es obligatorio
                     </span>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Agregar</label>
+                <label class="col-sm-3 col-form-label"> Agregar </label>
                 <div class="col-sm-9">
                     <div class="input-group">
                         <input 
@@ -38,60 +32,39 @@
                             (keyup.enter)="add()"
                             name="nuevoFavorito"
                         >
-                        <button
-                            class="btn btn-outline-primary"
-                            type="button"
-                            (click)="add()"
-                        >   
-                            Agregar
-                        </button>
+                        <button class="btn btn-outline-primary" type="button" (click)="add()"> Agregar </button>
                     </div>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Favoritos</label>
+                <label class="col-sm-3 col-form-label"> Favoritos </label>
                 <div class="col-sm-9">
-
-                    <div class="input-group mb-1" *ngFor="let item of persona.favoritos; let i=index">
+                    <div class="input-group mb-1" *ngFor="let item of persona.favoritos; let i = index">
                         <input 
                             class="form-control mb-1" 
                             [(ngModel)]="item.nombre" name="favorito__{{ i }}"
                             required
                         >
-                        <button
-                            class="btn btn-outline-danger"
-                            type="button"
-                            (click)="delete(i)"
-                        >   
-                            Eliminar
-                        </button>
+                        <button class="btn btn-outline-danger" type="button" (click)="delete(i)"> Eliminar </button>
                     </div>
-
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button 
-                        type="submit" 
-                        class="btn btn-primary float-end"
-                        (click)="saveData()"
-                        [disabled]="miFormulario.invalid"
-                    >
+                    <button type="submit" class="btn btn-primary float-end" (click)="saveData()" [disabled]="miFormulario.invalid">
                         Guardar
                     </button>
                 </div>
             </div>
-
         </form>
-
     </div>
 </div>
 
 <div class="row">
     <div class="col">
-        <span>Valid: </span>
+        <span> Value: </span>
         <pre> {{ persona | json }} </pre>
     </div>
 </div>

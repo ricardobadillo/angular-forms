@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+// Angular.
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-dynamics',
   templateUrl: './dynamics.component.html',
-  styleUrls: ['./dynamics.component.css']
+  styleUrls: ['./dynamics.component.scss']
 })
-export class DynamicsComponent implements OnInit {
+export class DynamicsComponent {
 
   miFormulario: FormGroup = this.fb.group({
     nombre: [ , [
@@ -27,9 +30,6 @@ export class DynamicsComponent implements OnInit {
 
   constructor( private fb: FormBuilder ) { }
 
-  ngOnInit(): void {
-  }
-
   add() {
     if (this.miFormulario.invalid) {
       return;
@@ -44,8 +44,7 @@ export class DynamicsComponent implements OnInit {
   }
 
   validarCampo( campo: string ) {
-    return this.miFormulario.controls[campo].errors  
-        && this.miFormulario.controls[campo].touched;
+    return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched;
   }
 
   saveData() {

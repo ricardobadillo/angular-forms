@@ -3,11 +3,9 @@
 
 <div class="row">
     <div class="col">
-        
         <form #miFormulario="ngForm">
-
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Género</label>
+                <label class="col-sm-3 col-form-label"> Género </label>
 
                 <div class="col-sm-9">
                     <div class="form-check">
@@ -20,9 +18,7 @@
                             id="radioMasculino"
                             required
                         >
-                        <label class="form-check-label" for="radioMasculino">
-                            Masculino
-                        </label>
+                        <label class="form-check-label" for="radioMasculino"> Masculino </label>
                     </div>
                     <div class="form-check">
                         <input 
@@ -34,16 +30,13 @@
                             id="radioFemenino"
                             required
                         >
-                        <label class="form-check-label" for="radioFemenino">
-                            Femenino
-                        </label>
+                        <label class="form-check-label" for="radioFemenino"> Femenino </label>
                     </div>
                 </div>
-
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Notificaciones</label>
+                <label class="col-sm-3 col-form-label"> Notificaciones </label>
 
                 <div class="col-sm-9">
                     <div class="form-check form-switch">
@@ -56,13 +49,14 @@
                             id="flexSwitchCheckChecked"
                             required
                         >
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
+                        <label class="form-check-label" for="flexSwitchCheckChecked"> Quiero recibir notificaciones </label>
                     </div>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label"></label>
+                
                 <div class="col-sm-9">
                     <div class="form-check">
                         <input 
@@ -74,42 +68,32 @@
                             id="flexCheckDefault"
                             required
                         >
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Términos y condiciones
-                        </label>
+                        <label class="form-check-label" for="flexCheckDefault"> Términos y condiciones </label>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button 
-                        type="submit" 
-                        class="btn btn-primary"
-                        [disabled]="miFormulario.invalid"
-                    >
-                        Guardar
-                    </button>
+                    <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid"> Guardar </button>
                 </div>
             </div>
-
         </form>
-
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="col">
-        <span>Valor del formulario: </span>
+        <span> Valor del formulario: </span>
         <pre> {{ miFormulario.value | json }} </pre>
         
-        <span>Persona: </span>
+        <span> Persona: </span>
         <pre> {{ persona | json }} </pre>
 
-        <span>Valid: </span>
+        <span> Valid: </span>
         <pre> {{ miFormulario.valid }} </pre>
         
-        <span>Condiciones: </span>
+        <span> Condiciones: </span>
         <pre> {{ miFormulario.controls?.terminos?.errors | json }} </pre>
     </div>
 </div>
