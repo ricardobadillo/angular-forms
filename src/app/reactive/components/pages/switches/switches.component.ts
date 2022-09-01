@@ -1,5 +1,7 @@
+// Angular.
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -28,19 +30,14 @@ export class SwitchesComponent implements OnInit {
       terminos: false
     });
 
-    // this.miFormulario.get('terminos')?.valueChanges.subscribe( newValue => {
-    //   console.log(newValue);
-    // });
-
-    this.miFormulario.valueChanges.subscribe( form => {
-      // console.log(form);
+    this.miFormulario.valueChanges.subscribe(form => {
+      console.log(form);
       delete form.condiciones;
       this.persona = form; 
     })
   }
 
   saveData() {
-
     const formValue = {... this.miFormulario.value };
     delete formValue.terminos;
 

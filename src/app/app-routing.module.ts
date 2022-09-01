@@ -17,10 +17,7 @@ const routes: Routes = [
     path: 'validation',
     loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule)
   },
-  {
-    path: '**',
-    redirectTo: 'template'
-  }
+  { path: '**', redirectTo: 'template' }
 ];
 
 @NgModule({

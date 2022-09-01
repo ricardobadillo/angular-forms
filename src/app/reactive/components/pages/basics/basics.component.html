@@ -1,13 +1,13 @@
-<h2>Reactivo: Básicos:</h2>
+<h2> Formularios reactivos: Básicos: </h2>
 <hr>
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="saveData()" autocomplete="off" [formGroup]="miFormulario"> 
+        <form (ngSubmit)="saveData()" [formGroup]="miFormulario"> 
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label"> Producto </label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" placeholder="Nombre del producto" formControlName="producto">
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Nombre del producto" formControlName="producto">
                     <span class="form-text text-danger" *ngIf="validarCampo('producto')">
                         El nombre debe tener más de 3 letras
                     </span>
@@ -15,9 +15,9 @@
             </div>
 
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Precio</label>
+                <label class="col-sm-3 col-form-label"> Precio </label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" placeholder="Precio del producto" formControlName="precio">
+                    <input type="number" autocomplete="off" class="form-control" placeholder="Precio del producto" formControlName="precio">
                     <span class="form-text text-danger" *ngIf="validarCampo('precio')">
                         El precio debe ser mayor o igual a 0
                     </span>
@@ -25,9 +25,9 @@
             </div>
 
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Existencia</label>
+                <label class="col-sm-3 col-form-label"> Existencia </label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" placeholder="Existencias del producto" formControlName="existencia">
+                    <input type="number" autocomplete="off" class="form-control" placeholder="Existencias del producto" formControlName="existencia">
                     <span class="form-text text-danger" *ngIf="validarCampo('existencia')">
                         La existencia debe ser mayor o igual a 0
                     </span>

@@ -1,6 +1,6 @@
 // Angular.
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -15,7 +15,7 @@ export class DynamicsComponent {
     nombre: [ , [
       Validators.required,
       Validators.minLength(3)
-    ]],
+    ] ],
     favoritos: this.fb.array( [
       [ 'Doom' ],
       [ 'Outlast' ]
