@@ -1,0 +1,126 @@
+<h2> Validaciones reactivas </h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form [formGroup]="miFormulario" (ngSubmit)="formSubmit()">
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label"> Nombre </label>
+                <div class="col-sm-9">
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="nombre"
+                        placeholder="Nombre del usuario"
+                    >
+                    <span class="form-text text-danger" *ngIf="invalidField('nombre')">
+                        Debe de ser en formato de nombre y apellido 
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label"> Email </label>
+                <div class="col-sm-9">
+                    <input
+                        formControlName="email"
+                        type="email"
+                        class="form-control"
+                        placeholder="Email del usuario"
+                    >
+                    <span class="form-text text-danger" *ngIf="invalidField('email')">
+                        {{ emailMessageError }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label"> Username </label>
+                <div class="col-sm-9">
+                    <input
+                        formControlName="username"
+                        type="text"
+                        class="form-control"
+                        placeholder="Nombre código del usuario"
+                    >
+                    <span class="form-text text-danger" *ngIf="invalidField('username')">
+                        El username es obligatorio
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label"> Password </label>
+                <div class="col-sm-9">
+                    <input
+                        formControlName="password"
+                        type="password"
+                        class="form-control"
+                        placeholder="Password"
+                    >
+                    <span class="form-text text-danger" *ngIf="invalidField('password')">
+                        La contraseña debe ser mayor de 6 caracteres
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label"> Confirmar </label>
+                <div class="col-sm-9">
+                    <input
+                        formControlName="confirm"
+                        type="password"
+                        class="form-control"
+                        placeholder="Confirmar password"
+                    >
+                    <span class="form-text text-danger" *ngIf="invalidField('confirm')">
+                        Las contraseñas no son iguales
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button  [disabled]="miFormulario.pending" class="btn btn-primary float-end" type="submit"> Crear </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <hr>
+        <span [style.fontWeight]="'800'"> Valid: </span>
+        <pre> {{ miFormulario.valid }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Status: </span>
+        <pre> {{ miFormulario.status }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Errors: </span>
+        <pre> {{ miFormulario.errors | json }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Nombre - valid: </span>
+        <pre> {{ miFormulario.controls.nombre.errors | json }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Correo - valid: </span>
+        <pre> {{ miFormulario.controls.email.errors | json }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Username - valid: </span>
+        <pre> {{ miFormulario.controls.username.errors | json }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Password - valid: </span>
+        <pre> {{ miFormulario.controls.password.errors | json }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Confirm Password - valid: </span>
+        <pre> {{ miFormulario.controls.confirm.errors | json }} </pre>
+        <hr>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<h2> Formularios reactivos: Dinámicos </h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="saveData()" [formGroup]="miFormulario">
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label"> Nombre </label>
+                <div class="col-sm-9">
+                    <input autocomplete="off" class="form-control" placeholder="Nombre" formControlName="nombre">
+                    <span class="text-form text-danger" *ngIf="validarCampo('nombre')">
+                        El campo es obligatorio
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label"> Agregar </label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <input autocomplete="off" class="form-control" [formControl]="nuevoFavorito" placeholder="Agregar favorito" (keyup.enter)="add()">
+                        <button class="btn btn-outline-primary" type="button" (click)="add()">   
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label"> Favoritos </label>
+                <div class="col-sm-9" formArrayName="favoritos">
+                    <div class="input-group mb-1" *ngFor="let favorito of favoritosArr.controls; let i = index">
+                        <input class="form-control mb-1" [formControlName]="i">
+                        <button class="btn btn-outline-danger" type="button" (click)="delete(i)">   
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary float-end"> Guardar </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <hr>
+        <span [style.fontWeight]="'800'"> Valid: </span>
+        <pre> {{ miFormulario.valid }} </pre>
+        <hr>
+        
+        <span [style.fontWeight]="'800'"> Valor de mi formulario: </span>
+        <pre> {{ miFormulario.value | json }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Agregar juego: </span>
+        <pre> {{ nuevoFavorito.valid }} </pre>
+        <hr>
+    </div>
+</div>

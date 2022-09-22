@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Componentes.
-import { BasicsComponent } from './components/pages/basics/basics.component';
-import { DynamicsComponent } from './components/pages/dynamics/dynamics.component';
-import { SwitchesComponent } from './components/pages/switches/switches.component';
+import { BasicsComponent } from './pages/basics/basics.component';
+import { DynamicsComponent } from './pages/dynamics/dynamics.component';
+import { SwitchesComponent } from './pages/switches/switches.component';
 
 // Módulos.
 import { ReactiveRoutingModule } from './reactive-routing.module';
@@ -21,6 +21,7 @@ import { ReactiveRoutingModule } from './reactive-routing.module';
   ],
   imports: [
     CommonModule,
+    
     ReactiveFormsModule,
     ReactiveRoutingModule
   ]

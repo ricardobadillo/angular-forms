@@ -1,0 +1,61 @@
+<h1 class="mt-5"> Selectores anidados </h1>
+<hr>
+
+<form [formGroup]="miFormulario" (ngSubmit)="saveData()">
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label"> Continente: </label>
+            <select class="form-control" formControlName="region"> 
+                <option value=""> -- Seleccione -- </option>
+                <option *ngFor="let region of regiones" [value]="region | lowercase"> {{ region }} </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="paises.length !== 0">
+        <div class="col">
+            <label class="form-label"> País: </label>
+            <select class="form-control" formControlName="pais"> 
+                <option value=""> -- Seleccione país -- </option>
+                <option *ngFor="let pais of paises" [value]="pais.cca3"> {{ pais.name.common }} </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="fronteras.length !== 0">
+        <div class="col">
+            <label class="form-label"> Fronteras: </label>
+            <select class="form-control" formControlName="fronteras"> 
+                <option value=""> -- Seleccione país fronterizo -- </option>
+                <option *ngFor="let frontera of fronteras" [value]="frontera.cca3"> {{ frontera.name.common }} </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="loading">
+        <div class="col">
+            <div class="alert alert-primary">
+                Cargando...
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end" type="submit"> Seleccionar </button>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col">
+        <hr>
+        <span [style.fontWeight]="'800'"> Valid: </span>
+        <pre> {{ miFormulario.valid }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Value: </span>
+        <pre> {{ miFormulario.value | json }} </pre>
+        <hr>
+    </div>
+</div>
