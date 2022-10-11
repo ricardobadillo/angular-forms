@@ -4,13 +4,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 // Componentes.
+import { NestedSelectorComponent } from './components/nested-selector/nested-selector.component';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 
 
 
 @NgModule({
   declarations: [
-    SidemenuComponent
+    NestedSelectorComponent,
+    SidemenuComponent,
   ],
   imports: [
     CommonModule,
