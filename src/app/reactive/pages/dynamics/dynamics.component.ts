@@ -1,6 +1,6 @@
 // Angular.
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 
 
@@ -11,7 +11,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class DynamicsComponent {
 
-  miFormulario: FormGroup = this.formBuilder.group({
+  miFormulario: UntypedFormGroup = this.formBuilder.group({
     nombre: [ , [
       Validators.required,
       Validators.minLength(3)
@@ -22,13 +22,13 @@ export class DynamicsComponent {
     ], Validators.required )
   });
 
-  nuevoFavorito: FormControl = this.formBuilder.control('', Validators.required);
+  nuevoFavorito: UntypedFormControl = this.formBuilder.control('', Validators.required);
 
-  get favoritosArr(): FormArray {
-    return this.miFormulario.get('favoritos') as FormArray;
+  get favoritosArr(): UntypedFormArray {
+    return this.miFormulario.get('favoritos') as UntypedFormArray;
   };
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor( private formBuilder: UntypedFormBuilder ) { }
 
   add(): void {
     if (this.miFormulario.invalid) {

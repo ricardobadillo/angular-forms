@@ -1,6 +1,6 @@
 // Angular.
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 
 
@@ -20,7 +20,7 @@ export class BasicsComponent implements OnInit {
     });
   */
 
-  miFormulario: FormGroup = this.formBuilder.group({
+  miFormulario: UntypedFormGroup = this.formBuilder.group({
     producto: [ , [
       Validators.required,
       Validators.minLength(3)
@@ -45,7 +45,7 @@ export class BasicsComponent implements OnInit {
     */
   };
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor( private formBuilder: UntypedFormBuilder ) { }
 
   validateField( campo: string ): boolean | null {
     return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched;

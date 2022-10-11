@@ -1,6 +1,6 @@
 // Angular.
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 // Modelos.
 import { Country } from '../../models/country';
@@ -21,7 +21,7 @@ import { SelectorCountryService } from '../../services/selector-country.service'
 })
 export class SelectorComponent implements OnInit {
 
-  miFormulario: FormGroup = this.formBuilder.group({
+  miFormulario: UntypedFormGroup = this.formBuilder.group({
     region:     [ '', Validators.required ],
     pais:       [ '', Validators.required ],
     fronteras:  [ '', Validators.required ]
@@ -34,7 +34,7 @@ export class SelectorComponent implements OnInit {
   loading: boolean = false;
 
   constructor( 
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private selectorCountryService: SelectorCountryService 
   ) { }
 

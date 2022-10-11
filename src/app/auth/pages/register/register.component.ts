@@ -1,6 +1,6 @@
 // Angular.
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 // Servicios.
 import { EmailValidatorService } from '../../../shared/validators/email-validator.service';
@@ -30,7 +30,7 @@ export class RegisterComponent {
     return '';
   };
 
-  miFormulario: FormGroup = this.formBuilder.group({
+  miFormulario: UntypedFormGroup = this.formBuilder.group({
     nombre: ['', [ Validators.required, Validators.pattern(this.validatorService.namePattern) ] ],
     email: ['', [ Validators.required, Validators.pattern(this.validatorService.emailPattern)], [ this.emailValidatorService ] ],
     username: ['', [ Validators.required, this.validatorService.invalidUsername ] ],
@@ -41,7 +41,7 @@ export class RegisterComponent {
   });
 
   constructor( 
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private emailValidatorService: EmailValidatorService,
     private validatorService: ValidatorService 
   ) { }

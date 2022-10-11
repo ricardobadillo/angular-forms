@@ -1,5 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import { FormControl, NG_VALIDATORS, Validator } from '@angular/forms';
+import { UntypedFormControl, NG_VALIDATORS, Validator } from '@angular/forms';
 
 
 @Directive({
@@ -16,7 +16,7 @@ export class CustomMinDirective implements Validator {
 
     constructor() { }
 
-    validate(control: FormControl) {
+    validate(control: UntypedFormControl) {
         const inputValue = control.value;
 
         return (inputValue < this.minimo)

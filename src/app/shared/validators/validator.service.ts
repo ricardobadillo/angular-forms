@@ -1,6 +1,6 @@
 // Angular.
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, ValidationErrors } from '@angular/forms';
 
 
 
@@ -14,7 +14,7 @@ public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   constructor() { }
 
-  invalidUsername = (control: FormControl): ValidationErrors | null => {
+  invalidUsername = (control: UntypedFormControl): ValidationErrors | null => {
     const value: string = control.value?.trim().toLowerCase();
 
     if (value === 'ricardo') return { error: true };
