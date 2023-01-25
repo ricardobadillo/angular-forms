@@ -2,17 +2,17 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-
-
 interface Favorito {
   id: number;
   nombre: string;
-}
+};
 
 interface Persona {
   nombre: string;
   favoritos: Favorito[];
-}
+};
+
+
 
 @Component({
   selector: 'app-dynamics',
@@ -20,8 +20,6 @@ interface Persona {
   styleUrls: ['./dynamics.component.scss']
 })
 export class DynamicsComponent {
-
-  @ViewChild('miFormulario') miFormulario!: NgForm;
 
   nuevoFavorito: string = '';
 
@@ -33,9 +31,15 @@ export class DynamicsComponent {
     ]
   };
 
-  saveData(): void {
-    console.log(this.persona);
+  get invalidName(): boolean | null {
+    return this.miFormulario?.controls.nombre?.errors
+        && this.miFormulario?.controls.nombre?.touched;
   }
+
+  @ViewChild('miFormulario') miFormulario!: NgForm;
+
+
+  constructor() { }
 
   add(): void {
     const nuevoFavorito: Favorito = {
@@ -49,5 +53,9 @@ export class DynamicsComponent {
 
   delete(index: number): void {
     this.persona.favoritos.splice(index, 1);
+  }
+
+  saveData(): void {
+    console.log('Posteo correcto');
   }
 }

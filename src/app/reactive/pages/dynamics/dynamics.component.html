@@ -7,7 +7,12 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label"> Nombre </label>
                 <div class="col-sm-9">
-                    <input autocomplete="off" class="form-control" placeholder="Nombre" formControlName="nombre">
+                    <input 
+                        autocomplete="off" 
+                        class="form-control" 
+                        placeholder="Nombre" 
+                        formControlName="nombre"
+                    >
                     <span class="text-form text-danger" *ngIf="validarCampo('nombre')">
                         El campo es obligatorio
                     </span>
@@ -18,7 +23,13 @@
                 <label class="col-sm-3 col-form-label"> Agregar </label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <input autocomplete="off" class="form-control" [formControl]="nuevoFavorito" placeholder="Agregar favorito" (keyup.enter)="add()">
+                        <input 
+                            autocomplete="off" 
+                            class="form-control" 
+                            placeholder="Agregar favorito" 
+                            [formControl]="nuevoFavorito" 
+                            (keyup.enter)="add()"
+                        >
                         <button class="btn btn-outline-primary" type="button" (click)="add()">   
                             Agregar
                         </button>

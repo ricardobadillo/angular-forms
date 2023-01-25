@@ -1,5 +1,5 @@
 // Angular.
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 
@@ -9,24 +9,45 @@ import { NgForm } from '@angular/forms';
   templateUrl: './basics.component.html',
   styleUrls: ['./basics.component.scss']
 })
-export class BasicsComponent {
+export class BasicsComponent implements AfterViewInit {
+
+  initialForm = { producto: '', precio: 0, existencia: 0 };
 
   @ViewChild('miFormulario') miFormulario!: NgForm;
   
-  initialForm = { producto: '', precio: 0, existencia: 0 };
+  get invalidProductName(): boolean {
+    return this.miFormulario?.controls.producto?.invalid 
+        && this.miFormulario?.controls.producto?.touched;
+  }
+
+  get invalidPrice(): boolean {
+    return this.miFormulario?.controls.precio?.invalid
+        && this.miFormulario?.controls.precio?.dirty;
+  }
+
+  get invalidExistence(): boolean {
+    return this.miFormulario?.controls.existencia?.invalid 
+        && this.miFormulario?.controls.existencia?.dirty;
+  }
   
+
   constructor() { }
 
-  invalidProductName(): boolean {
-    return this.miFormulario?.controls.producto?.invalid && this.miFormulario?.controls.producto?.touched;
-  };
+  ngAfterViewInit(): void {
+    
+    /*
+      ❗ Ver los valores del formulario de manera reactiva.
+      this.miFormulario.valueChanges?.subscribe(console.log);
+    */
 
-  invalidPrice(): boolean {
-    return this.miFormulario?.controls.precio?.touched && this.miFormulario?.controls.precio.value < 0;
-  };
+    /* 
+      ❗ Ver el status del formulario de manera reactiva.
+      this.miFormulario.statusChanges?.subscribe(console.log);
+    */
+  }
 
   saveData(): void {
     console.log('Posteo correcto');
-    this.miFormulario.resetForm({ precio: 0, existencia: 0 });
-  };
+    this.miFormulario.resetForm({ producto: '', precio: 0, existencia: 0 });
+  }
 }

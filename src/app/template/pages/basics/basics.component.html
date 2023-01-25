@@ -3,21 +3,23 @@
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="saveData()" autocomplete="off" #miFormulario="ngForm">
+        <form #miFormulario="ngForm" (ngSubmit)="saveData()">
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label"> Producto </label>
+
                 <div class="col-sm-9">
-                    <input 
-                        type="text"
-                        class="form-control"
-                        name="producto"
-                        [ngModel]="initialForm.producto"
-                        placeholder="Nombre del producto"
-                        minlength="3"
-                        required
+                    <input
+                      autocomplete="off"
+                      class="form-control"
+                      minlength="3"
+                      name="producto"
+                      placeholder="Nombre del producto"
+                      required
+                      type="text"
+                      [ngModel]="initialForm.producto"
                     >
-                    <span class="form-text text-danger" *ngIf="invalidProductName()">
-                        El nombre debe tener más de 3 letras
+                    <span class="form-text text-danger" *ngIf="invalidProductName">
+                      El nombre debe tener más de 2 letras
                     </span>
                 </div>
             </div>
@@ -26,16 +28,18 @@
                 <label class="col-sm-3 col-form-label"> Precio </label>
 
                 <div class="col-sm-9">
-                    <input 
-                        type="number" 
-                        class="form-control" 
-                        name="precio"
-                        [ngModel]="initialForm.precio" 
-                        placeholder="Precio del producto" 
-                        required
+                    <input
+                      autocomplete="off"
+                      class="form-control"
+                      name="precio"
+                      placeholder="Precio del producto"
+                      type="number"
+                      customMin
+                      [minimo]="0"
+                      [ngModel]="initialForm.precio"
                     >
-                    <span class="form-text text-danger" *ngIf="invalidPrice()">
-                        El precio debe ser mayor o igual a 0
+                    <span class="form-text text-danger" *ngIf="invalidPrice">
+                      El precio debe ser mayor o igual a 0
                     </span>
                 </div>
             </div>
@@ -44,23 +48,26 @@
                 <label class="col-sm-3 col-form-label"> Existencia </label>
 
                 <div class="col-sm-9">
-                    <input 
-                        type="number" 
-                        class="form-control" 
-                        name="existencia" 
-                        customMin
-                        [minimo]="0"
-                        [ngModel]="initialForm.existencia" 
-                        placeholder="Existencias del producto" 
-                        required
+                    <input
+                      autocomplete="off"
+                      class="form-control"
+                      name="existencia"
+                      placeholder="Existencias del producto"
+                      type="number"
+                      customMin
+                      [minimo]="0"
+                      [ngModel]="initialForm.existencia"
                     >
+                    <span class="form-text text-danger" *ngIf="invalidExistence">
+                      Número inválido para existencia de productos
+                    </span>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col">
-                    <button type="submit" [disabled]="miFormulario.invalid" class="btn btn-primary float-end">
-                        Guardar
+                    <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">
+                      Guardar
                     </button>
                 </div>
             </div>
@@ -71,10 +78,6 @@
 <div class="row">
     <div class="col">
         <hr>
-        <span [style.fontWeight]="'800'"> Valid: </span>
-        <pre> {{ miFormulario.valid }} </pre>
-        <hr>
-
         <span [style.fontWeight]="'800'"> Pristine: </span>
         <pre> {{ miFormulario.pristine }} </pre>
         <hr>
@@ -83,8 +86,20 @@
         <pre> {{ miFormulario.touched }} </pre>
         <hr>
 
-        <span [style.fontWeight]="'800'"> Value: </span>
+        <span [style.fontWeight]="'800'"> Valid: </span>
+        <pre> {{ miFormulario.valid }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Valor del formulario: </span>
         <pre> {{ miFormulario.value | json }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Error del campo "existencia": </span>
+        <pre> {{ miFormulario.form.controls.existencia && miFormulario.form.controls.existencia.errors | json }} </pre>
+        <hr>
+
+        <span [style.fontWeight]="'800'"> Error del campo "precio": </span>
+        <pre> {{ miFormulario.form.controls.precio && miFormulario.form.controls.precio.errors | json }} </pre>
         <hr>
     </div>
 </div>

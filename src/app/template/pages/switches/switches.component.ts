@@ -1,5 +1,6 @@
 // Angular.
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -10,8 +11,15 @@ import { Component } from '@angular/core';
 })
 export class SwitchesComponent {
 
-  persona = { genero: '', notificaciones: false };
-  terminos: boolean = false;
+  persona = { genero: '', notificaciones: false, terminos: false };
+
+  @ViewChild('miFormulario') miFormulario!: NgForm;
+
 
   constructor() { }
+
+  saveData() {
+    console.log('Posteo correcto');
+    this.miFormulario.reset({ genero: '', notificaciones: false, terminos: false });
+  }
 }

@@ -1,15 +1,21 @@
-<h2> Formularios reactivos: Básicos: </h2>
+<h2> Formularios reactivos: Básicos </h2>
 <hr>
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="saveData()" [formGroup]="miFormulario"> 
+        <form [formGroup]="miFormulario" (ngSubmit)="saveData()">
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label"> Producto </label>
                 <div class="col-sm-9">
-                    <input type="text" autocomplete="off" class="form-control" placeholder="Nombre del producto" formControlName="producto">
-                    <span class="form-text text-danger" *ngIf="validateField('producto')">
-                        El nombre debe tener más de 3 letras
+                    <input
+                      autocomplete="off"
+                      class="form-control"
+                      placeholder="Nombre del producto"
+                      type="text"
+                      formControlName="producto"
+                    >
+                    <span class="form-text text-danger">
+                      El nombre debe tener más de 3 letras
                     </span>
                 </div>
             </div>
@@ -17,9 +23,15 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label"> Precio </label>
                 <div class="col-sm-9">
-                    <input type="number" autocomplete="off" class="form-control" placeholder="Precio del producto" formControlName="precio">
-                    <span class="form-text text-danger" *ngIf="validateField('precio')">
-                        El precio debe ser mayor o igual a 0
+                    <input
+                      autocomplete="off"
+                      class="form-control"
+                      placeholder="Precio del producto"
+                      type="number"
+                      formControlName="precio"
+                    >
+                    <span class="form-text text-danger">
+                      El precio debe ser mayor o igual a 0
                     </span>
                 </div>
             </div>
@@ -27,16 +39,24 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label"> Existencia </label>
                 <div class="col-sm-9">
-                    <input type="number" autocomplete="off" class="form-control" placeholder="Existencias del producto" formControlName="existencia">
-                    <span class="form-text text-danger" *ngIf="validateField('existencia')">
-                        La existencia debe ser mayor o igual a 0
+                    <input
+                      autocomplete="off"
+                      class="form-control"
+                      placeholder="Existencias del producto"
+                      type="number"
+                      formControlName="existencia"
+                    >
+                    <span class="form-text text-danger">
+                      La existencia debe ser mayor o igual a 0
                     </span>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary float-end"> Guardar </button>
+                  <button type="submit" class="btn btn-primary float-end">
+                    Guardar
+                  </button>
                 </div>
             </div>
         </form>

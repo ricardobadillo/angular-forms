@@ -9,11 +9,11 @@
                 <div class="col-sm-9">
                     <div class="form-check">
                         <input 
-                            class="form-check-input" 
-                            formControlName="genero"
+                            class="form-check-input"
+                            id="radioMasculino"
                             type="radio"
                             value="M"
-                            id="radioMasculino"
+                            formControlName="genero"
                         >
                         <label class="form-check-label" for="radioMasculino">
                             Masculino
@@ -22,11 +22,11 @@
 
                     <div class="form-check">
                         <input 
-                            class="form-check-input" 
-                            formControlName="genero"
+                            class="form-check-input"
+                            id="radioFemenino"
                             type="radio"
                             value="F"
-                            id="radioFemenino"
+                            formControlName="genero"
                         >
                         <label class="form-check-label" for="radioFemenino">
                             Femenino
@@ -41,9 +41,9 @@
                     <div class="form-check form-switch">
                         <input 
                             class="form-check-input"
-                            formControlName="notificaciones"
-                            type="checkbox" 
                             id="flexSwitchCheckChecked"
+                            type="checkbox"
+                            formControlName="notificaciones"
                         >
                         <label class="form-check-label" for="flexSwitchCheckChecked">
                             Quiero recibir notificaciones
@@ -57,10 +57,10 @@
                 <div class="col-sm-9">
                     <div class="form-check">
                         <input 
-                            class="form-check-input" 
-                            type="checkbox" 
-                            formControlName="terminos"
+                            class="form-check-input"
                             id="flexCheckDefault"
+                            type="checkbox"
+                            formControlName="terminos"
                         >
                         <label class="form-check-label" for="flexCheckDefault">
                             Términos y condiciones
