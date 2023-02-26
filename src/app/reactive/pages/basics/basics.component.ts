@@ -17,6 +17,21 @@ export class BasicsComponent {
     existencia: FormControl<number | null>
   }>;
 
+  get invalidProductName(): boolean {
+    return this.miFormulario.controls.producto.invalid
+        && this.miFormulario.controls.producto.touched;
+  }
+
+  get invalidPrice(): boolean {
+    return this.miFormulario.controls.precio.invalid
+        && this.miFormulario.controls.precio.touched;
+  }
+
+  get invalidExistence(): boolean {
+    return this.miFormulario.controls.existencia.invalid
+        && this.miFormulario.controls.existencia.touched;
+  }
+
 
   constructor(private formBuilder: FormBuilder) {
     this.miFormulario = this.formBuilder.group({
@@ -39,7 +54,8 @@ export class BasicsComponent {
       return;
     }
 
-    const values = this.miFormulario.getRawValue();
+    // const values = this.miFormulario.getRawValue();
+    // console.log(values);
 
     this.miFormulario.reset();
   }

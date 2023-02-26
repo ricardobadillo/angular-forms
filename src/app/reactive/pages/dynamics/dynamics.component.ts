@@ -52,7 +52,7 @@ export class DynamicsComponent {
       this.miFormulario.markAllAsTouched();
       return;
     }
-    
+
     console.log(this.miFormulario);
   };
 }

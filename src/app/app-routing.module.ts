@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'reactive',
-    loadChildren: ()=> import('./reactive/reactive.module').then(m => m.ReactiveModule) 
+    loadChildren: ()=> import('./reactive/reactive.module').then(m => m.ReactiveModule)
   },
   {
     path: 'selector',
@@ -25,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

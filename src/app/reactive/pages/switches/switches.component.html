@@ -2,97 +2,104 @@
 <hr>
 
 <div class="row">
-    <div class="col">
-        <form (ngSubmit)="saveData()" [formGroup]="miFormulario">
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label"> Género </label>
-                <div class="col-sm-9">
-                    <div class="form-check">
-                        <input 
-                            class="form-check-input"
-                            id="radioMasculino"
-                            type="radio"
-                            value="M"
-                            formControlName="genero"
-                        >
-                        <label class="form-check-label" for="radioMasculino">
-                            Masculino
-                        </label>
-                    </div>
+  <div class="col">
+    <form (ngSubmit)="saveData()" [formGroup]="miFormulario">
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"> Género </label>
 
-                    <div class="form-check">
-                        <input 
-                            class="form-check-input"
-                            id="radioFemenino"
-                            type="radio"
-                            value="F"
-                            formControlName="genero"
-                        >
-                        <label class="form-check-label" for="radioFemenino">
-                            Femenino
-                        </label>
-                    </div>
-                </div>
-            </div>
+        <div class="col-sm-9">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              id="radioMasculino"
+              type="radio"
+              value="M"
+              formControlName="genero"
+            >
 
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label"> Notificaciones </label>
-                <div class="col-sm-9">
-                    <div class="form-check form-switch">
-                        <input 
-                            class="form-check-input"
-                            id="flexSwitchCheckChecked"
-                            type="checkbox"
-                            formControlName="notificaciones"
-                        >
-                        <label class="form-check-label" for="flexSwitchCheckChecked">
-                            Quiero recibir notificaciones
-                        </label>
-                    </div>
-                </div>
-            </div>
+            <label class="form-check-label" for="radioMasculino">
+              Masculino
+            </label>
+          </div>
 
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label"></label>
-                <div class="col-sm-9">
-                    <div class="form-check">
-                        <input 
-                            class="form-check-input"
-                            id="flexCheckDefault"
-                            type="checkbox"
-                            formControlName="terminos"
-                        >
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Términos y condiciones
-                        </label>
-                    </div>
-                </div>
-            </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              id="radioFemenino"
+              type="radio"
+              value="F"
+              formControlName="genero"
+            >
 
-            <div class="row">
-                <div class="col">
-                    <button type="submit" class="btn btn-primary">
-                        Guardar
-                    </button>
-                </div>
+            <label class="form-check-label" for="radioFemenino">
+              Femenino
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+          <label class="col-sm-3 col-form-label"> Notificaciones </label>
+
+          <div class="col-sm-9">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                id="flexSwitchCheckChecked"
+                type="checkbox"
+                formControlName="notificaciones"
+              >
+
+              <label class="form-check-label" for="flexSwitchCheckChecked">
+                Quiero recibir notificaciones
+              </label>
             </div>
-        </form>
-    </div>
+          </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"></label>
+
+        <div class="col-sm-9">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              id="flexCheckDefault"
+              type="checkbox"
+              formControlName="terminos"
+            >
+
+            <label class="form-check-label" for="flexCheckDefault">
+              Términos y condiciones
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary" type="submit">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="col">
-        <hr>
-        <span [style.fontWeight]="'800'"> Valor del formulario: </span>
-        <pre> {{ miFormulario.value | json }} </pre>
-        <hr>
+  <div class="col">
+    <hr>
+    <span [style.fontWeight]="'800'"> Valor del formulario: </span>
+    <pre> {{ miFormulario.value | json }} </pre>
+    <hr>
 
-        <span [style.fontWeight]="'800'"> Persona: </span>
-        <pre> {{ persona | json }} </pre>
-        <hr>
+    <span [style.fontWeight]="'800'"> Persona: </span>
+    <pre> {{ persona | json }} </pre>
+    <hr>
 
-        <span [style.fontWeight]="'800'"> Valid: </span>
-        <pre> {{ miFormulario.valid }} </pre>
-        <hr>
-    </div>
+    <span [style.fontWeight]="'800'"> Valid: </span>
+    <pre> {{ miFormulario.valid }} </pre>
+    <hr>
+  </div>
 </div>

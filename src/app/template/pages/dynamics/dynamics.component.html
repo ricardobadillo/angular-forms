@@ -2,83 +2,87 @@
 <hr>
 
 <div class="row">
-    <div class="col">
-        <form #miFormulario="ngForm" (ngSubmit)="saveData()">
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label"> Nombre </label>
+  <div class="col">
+    <form #miFormulario="ngForm" (ngSubmit)="saveData()">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Nombre </label>
 
-                <div class="col-sm-9">
-                    <input
-                      autocomplete="off"
-                      class="form-control"
-                      minlength="1"
-                      name="nombre"
-                      placeholder="Nombre"
-                      required
-                      [(ngModel)]="persona.nombre"
-                    >
-                    <span class="text-form text-danger" *ngIf="invalidName">
-                      El campo es obligatorio
-                    </span>
-                </div>
-            </div>
+        <div class="col-sm-9">
+          <input
+            autocomplete="off"
+            class="form-control"
+            minlength="1"
+            name="nombre"
+            placeholder="Nombre"
+            required
+            [(ngModel)]="persona.nombre"
+          >
+          <span class="text-form text-danger" *ngIf="invalidName">
+            El campo es obligatorio
+          </span>
+        </div>
+      </div>
 
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label"> Agregar </label>
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Agregar </label>
 
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <input
-                          autocomplete="off"
-                          class="form-control"
-                          name="nuevoFavorito"
-                          placeholder="Agregar favorito"
-                          [(ngModel)]="nuevoFavorito"
-                          (keyup.enter)="add()"
-                        >
-                        <button class="btn btn-outline-primary" type="button" (click)="add()"> Agregar </button>
-                    </div>
-                </div>
-            </div>
+        <div class="col-sm-9">
+          <div class="input-group">
+            <input
+              autocomplete="off"
+              class="form-control"
+              name="nuevoFavorito"
+              placeholder="Agregar favorito"
+              [(ngModel)]="nuevoFavorito"
+              (keyup.enter)="add()"
+            >
 
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label"> Favoritos </label>
+            <button class="btn btn-outline-primary" type="button" (click)="add()">
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
 
-                <div class="col-sm-9">
-                    <div class="input-group mb-1" *ngFor="let item of persona.favoritos; let i = index">
-                        <input
-                          class="form-control mb-1"
-                          name="favorito-{{ i }}"
-                          required
-                          [(ngModel)]="item.nombre"
-                        >
-                        <button class="btn btn-outline-danger" type="button" (click)="delete(i)">
-                          Eliminar
-                        </button>
-                    </div>
-                </div>
-            </div>
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label"> Favoritos </label>
 
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">
-                      Guardar
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
+        <div class="col-sm-9">
+          <div class="input-group mb-1" *ngFor="let item of persona.favoritos; let i = index">
+            <input
+              class="form-control mb-1"
+              name="favorito-{{ i }}"
+              required
+              [(ngModel)]="item.nombre"
+            >
+
+            <button class="btn btn-outline-danger" type="button" (click)="delete(i)">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <div class="row">
-    <div class="col">
-        <hr>
-        <span [style.fontWeight]="'800'"> Valor del formulario: </span>
-        <pre> {{ persona | json }} </pre>
-        <hr>
+  <div class="col">
+    <hr>
+    <span [style.fontWeight]="'800'"> Valor del formulario: </span>
+    <pre> {{ persona | json }} </pre>
+    <hr>
 
-        <span [style.fontWeight]="'800'"> Error del campo "nombre": </span>
-        <pre> {{ miFormulario.form.controls.nombre && miFormulario.form.controls.nombre.errors | json }} </pre>
-        <hr>
-    </div>
+    <span [style.fontWeight]="'800'"> Error del campo "nombre": </span>
+    <pre> {{ miFormulario.form.controls.nombre && miFormulario.form.controls.nombre.errors | json }} </pre>
+    <hr>
+  </div>
 </div>

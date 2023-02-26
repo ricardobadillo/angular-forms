@@ -14,9 +14,9 @@ export class BasicsComponent implements AfterViewInit {
   initialForm = { producto: '', precio: 0, existencia: 0 };
 
   @ViewChild('miFormulario') miFormulario!: NgForm;
-  
+
   get invalidProductName(): boolean {
-    return this.miFormulario?.controls.producto?.invalid 
+    return this.miFormulario?.controls.producto?.invalid
         && this.miFormulario?.controls.producto?.touched;
   }
 
@@ -26,21 +26,20 @@ export class BasicsComponent implements AfterViewInit {
   }
 
   get invalidExistence(): boolean {
-    return this.miFormulario?.controls.existencia?.invalid 
+    return this.miFormulario?.controls.existencia?.invalid
         && this.miFormulario?.controls.existencia?.dirty;
   }
-  
+
 
   constructor() { }
 
   ngAfterViewInit(): void {
-    
     /*
       ❗ Ver los valores del formulario de manera reactiva.
       this.miFormulario.valueChanges?.subscribe(console.log);
     */
 
-    /* 
+    /*
       ❗ Ver el status del formulario de manera reactiva.
       this.miFormulario.statusChanges?.subscribe(console.log);
     */
