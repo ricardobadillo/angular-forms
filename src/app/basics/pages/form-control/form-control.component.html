@@ -1,0 +1,159 @@
+<h2> Básicos: Form Control </h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <div class="mb-3 row">
+      <label class="col-form-label col-sm-3"> Nombre: </label>
+
+      <div class="col-sm-9">
+        <input
+          class="form-control"
+          type="text"
+          [formControl]="nameField"
+        >
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-form-label col-sm-3"> Edad: </label>
+
+      <div class="col-sm-9">
+        <input
+          class="form-control"
+          type="number"
+          [formControl]="ageField"
+        >
+
+        <span class="form-text text-danger" *ngIf="ageField.hasError('min')">
+          Número inválido para edad
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-form-label col-sm-3"> Selección de categoría </label>
+
+      <div class="col-sm-9">
+        <select class="form-control" [formControl]="categoryField">
+          <option value=""> -- Seleccione -- </option>
+          <option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{ categoria.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-form-label col-sm-3"> Nivel de aprobación </label>
+
+      <div class="col-sm-9">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            id="radioEndesacuerdo"
+            name="agree"
+            type="radio"
+            value="En desacuerdo"
+            [formControl]="agreeField"
+          >
+
+          <label class="form-check-label" for="radioEndesacuerdo">
+            En desacuerdo
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            id="radioNeutro"
+            name="agree"
+            type="radio"
+            value="Neutro"
+            [formControl]="agreeField"
+          >
+
+          <label class="form-check-label" for="radioNeutro">
+            Neutro
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            id="radioDeacuerdo"
+            name="agree"
+            type="radio"
+            value="De acuerdo"
+            [formControl]="agreeField"
+          >
+
+          <label class="form-check-label" for="radioDeacuerdo">
+            De acuerdo
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-form-label col-sm-3"> Género </label>
+
+      <div class="col-sm-9">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            id="radioMasculino"
+            name="gender"
+            type="radio"
+            value="M"
+            [formControl]="genderField"
+          >
+
+          <label class="form-check-label" for="radioMasculino">
+            Masculino
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            id="radioFemenino"
+            name="gender"
+            type="radio"
+            value="F"
+            [formControl]="genderField"
+          >
+
+          <label class="form-check-label" for="radioFemenino">
+            Femenino
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <hr>
+    <span [style.fontWeight]="'800'"> Valor del campo "Nombre": </span>
+    <pre> {{ nameField.value }} </pre>
+    <hr>
+
+    <span [style.fontWeight]="'800'"> Valor del campo "Edad": </span>
+    <pre> {{ ageField.errors | json }} </pre>
+    <hr>
+
+    <span [style.fontWeight]="'800'"> Valor del campo "Categoría": </span>
+    <pre> {{ categoryField.value }} </pre>
+    <hr>
+
+    <span [style.fontWeight]="'800'"> Valor del campo "Aceptación": </span>
+    <pre> {{ agreeField.value }} </pre>
+    <hr>
+
+    <span [style.fontWeight]="'800'"> Valor del campo "Género": </span>
+    <pre> {{ genderField.value }} </pre>
+    <hr>
+  </div>
+</div>

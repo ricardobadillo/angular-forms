@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SelectorCountryService {
-  
+
   private baseUrl: string = 'https://restcountries.com/v3.1';
   private _regiones: string[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 
@@ -27,7 +27,6 @@ export class SelectorCountryService {
   constructor( private http: HttpClient) { }
 
   getCountriesForRegion(region: string): Observable<Country[]> {
-    
     const url: string = `${this.baseUrl}/region/${region}?fields=name,cca3`;
 
     return this.http.get<Country[]>(url);
@@ -46,20 +45,19 @@ export class SelectorCountryService {
   };
 
   getCountryNameForAlphaCode(code: string): Observable<Country> {
-
     const url: string = `${this.baseUrl}/alpha/${code}?fields=cca3,name`;
 
     return this.http.get<Country>(url);
   };
 
   getCountriesByBorders(borders: string[]): Observable<Country[]> {
-    
+
     if (!borders) {
       return of([]);
     };
 
     const requests: Observable<Country>[] = [];
-  
+
     borders.forEach(code => {
       const request = this.getCountryNameForAlphaCode(code);
       requests.push(request);

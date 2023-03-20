@@ -1,0 +1,78 @@
+<h2> Form Group y Form Group múltiples  </h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <form [formGroup]="miFormulario" (ngSubmit)="saveData()">
+      <div class="mb-3 row">
+        <label class="col-form-label col-sm-3"> Edad </label>
+
+        <div class="col-sm-9">
+          <input
+            autocomplete="off"
+            class="form-control"
+            placeholder="Edad"
+            type="number"
+            formControlName="age"
+          >
+          <span class="form-text text-danger" *ngIf="invalidAge">
+            El número ingresado es una edad inválida
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-3 row" formGroupName="fullName">
+        <label class="col-form-label col-sm-3"> Nombre </label>
+
+        <div class="col-sm-9">
+          <input
+            autocomplete="off"
+            class="form-control"
+            placeholder="Nombre"
+            type="text"
+            formControlName="name"
+          >
+          <span class="form-text text-danger" *ngIf="invalidName">
+            El nombre debe tener más de 3 letras
+          </span>
+        </div>
+
+        <label class="col-form-label col-sm-3 mt-22"> Apellido </label>
+
+        <div class="col-sm-9 mt-2">
+          <input
+            autocomplete="off"
+            class="form-control"
+            placeholder="Apellido"
+            type="text"
+            formControlName="lastName"
+          >
+          <span class="form-text text-danger" *ngIf="invalidLastName">
+            El apellido debe tener más de 3 letras
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <hr>
+    <span [style.fontWeight]="'800'"> Valid: </span>
+    <pre> {{ miFormulario.valid }} </pre>
+    <hr>
+
+    <span [style.fontWeight]="'800'"> Valor del formulario: </span>
+    <pre> {{ miFormulario.value | json }} </pre>
+    <hr>
+  </div>
+</div>

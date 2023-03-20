@@ -12,19 +12,19 @@ import { delay, map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class EmailValidatorService implements AsyncValidator {
 
+
   constructor( private http: HttpClient ) { }
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
     
     const email = control.value;
-    console.log(email);
     
     return this.http.get<any[]>(`http://localhost:3000/usuarios?q=${email}`)
       .pipe(
         delay(1000),
-        map(respuesta => {
-          return (respuesta.length === 0)? null: { emailExiste: true }
+        map(response => {
+          return (response.length === 0) ? null : { emailExiste: true }
         })
-      )
+      );
   };
 }

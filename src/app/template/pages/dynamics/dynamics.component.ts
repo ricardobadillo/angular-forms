@@ -8,8 +8,8 @@ interface Favorito {
 };
 
 interface Persona {
-  nombre: string;
   favoritos: Favorito[];
+  nombre: string;
 };
 
 
@@ -21,7 +21,7 @@ interface Persona {
 })
 export class DynamicsComponent {
 
-  nuevoFavorito: string = '';
+  nuevoFavorito!: string;
 
   persona: Persona = {
     nombre: '',
@@ -41,17 +41,17 @@ export class DynamicsComponent {
 
   constructor() { }
 
-  add(): void {
+  addFavorite(): void {
     const nuevoFavorito: Favorito = {
       id: this.persona.favoritos.length + 1,
       nombre: this.nuevoFavorito
-    }
+    };
 
     this.persona.favoritos.push({ ...nuevoFavorito });
     this.nuevoFavorito = '';
   }
 
-  delete(index: number): void {
+  deleteFavorite(index: number): void {
     this.persona.favoritos.splice(index, 1);
   }
 

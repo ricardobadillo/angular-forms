@@ -1,12 +1,13 @@
 // Angular.
 import { Component } from '@angular/core';
 
-
-
+// Modelos.
 interface MenuItem {
   name: string;
   route: string;
 }
+
+
 
 @Component({
   selector: 'app-sidemenu',
@@ -15,10 +16,13 @@ interface MenuItem {
 })
 export class SidemenuComponent {
 
-  templateMenu: MenuItem[] = [
-    { name: 'Básicos', route: './template/basics' },
-    { name: 'Dinámicos', route: './template/dynamics' },
-    { name: 'Switches', route: './template/switches' }
+  authMenu: MenuItem[] = [
+    { name: 'Registro de usuario', route: './auth/register' }
+  ];
+
+  basicsMenu: MenuItem[] = [
+    { name: 'Form Control', route: './basics/form-control' },
+    { name: 'Form Group', route: './basics/form-group' },
   ];
 
   reactiveMenu: MenuItem[] = [
@@ -27,11 +31,13 @@ export class SidemenuComponent {
     { name: 'Switches', route: './reactive/switches' }
   ];
 
-  authMenu: MenuItem[] = [
-    { name: 'Registro de usuario', route: './auth/register' }
-  ];
-
   selectorMenu: MenuItem[] = [
     { name: 'Ejemplo', route: './selector/selector' }
+  ];
+
+  templateMenu: MenuItem[] = [
+    { name: 'Básicos', route: './template/basics' },
+    { name: 'Dinámicos', route: './template/dynamics' },
+    { name: 'Switches', route: './template/switches' }
   ];
 }

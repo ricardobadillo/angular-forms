@@ -5,7 +5,7 @@
   <div class="col">
     <form #miFormulario="ngForm" (ngSubmit)="saveData()">
       <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label"> Nombre </label>
+        <label class="col-form-label col-sm-3"> Nombre </label>
 
         <div class="col-sm-9">
           <input
@@ -24,7 +24,7 @@
       </div>
 
       <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label"> Agregar </label>
+        <label class="col-form-label col-sm-3"> Agregar </label>
 
         <div class="col-sm-9">
           <div class="input-group">
@@ -34,10 +34,10 @@
               name="nuevoFavorito"
               placeholder="Agregar favorito"
               [(ngModel)]="nuevoFavorito"
-              (keyup.enter)="add()"
+              (keyup.enter)="addFavorite()"
             >
 
-            <button class="btn btn-outline-primary" type="button" (click)="add()">
+            <button class="btn btn-outline-primary" type="button" (click)="addFavorite()">
               Agregar
             </button>
           </div>
@@ -45,7 +45,7 @@
       </div>
 
       <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label"> Favoritos </label>
+        <label class="col-form-label col-sm-3"> Favoritos </label>
 
         <div class="col-sm-9">
           <div class="input-group mb-1" *ngFor="let item of persona.favoritos; let i = index">
@@ -56,7 +56,7 @@
               [(ngModel)]="item.nombre"
             >
 
-            <button class="btn btn-outline-danger" type="button" (click)="delete(i)">
+            <button class="btn btn-outline-danger" type="button" (click)="deleteFavorite(i)">
               Eliminar
             </button>
           </div>
@@ -81,7 +81,7 @@
     <pre> {{ persona | json }} </pre>
     <hr>
 
-    <span [style.fontWeight]="'800'"> Error del campo "nombre": </span>
+    <span [style.fontWeight]="'800'"> Error del campo "Nombre": </span>
     <pre> {{ miFormulario.form.controls.nombre && miFormulario.form.controls.nombre.errors | json }} </pre>
     <hr>
   </div>

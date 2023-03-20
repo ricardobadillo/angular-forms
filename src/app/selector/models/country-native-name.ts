@@ -1,4 +1,4 @@
 export interface CountryNativeName {
-    common:   string;
-    official: string;
+  common:   string;
+  official: string;
 };

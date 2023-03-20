@@ -18,7 +18,7 @@ export class SwitchesComponent {
 
   constructor() { }
 
-  saveData() {
+  saveData(): void {
     console.log('Posteo correcto');
     this.miFormulario.reset({ genero: '', notificaciones: false, terminos: false });
   }

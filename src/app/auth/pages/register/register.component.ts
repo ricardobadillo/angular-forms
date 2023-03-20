@@ -16,7 +16,7 @@ import { ValidatorService } from '../../../shared/validators/validator.service';
 export class RegisterComponent {
 
   get emailMessageError(): string {
-    
+
     const errors = this.miFormulario.get('email')?.errors;
 
     if (errors?.required) {
@@ -26,24 +26,36 @@ export class RegisterComponent {
     } else if (errors?.emailExiste) {
       return 'El email ya existe';
     }
-    
+
     return '';
   };
 
   miFormulario: UntypedFormGroup = this.formBuilder.group({
-    nombre: ['', [ Validators.required, Validators.pattern(this.validatorService.namePattern) ] ],
-    email: ['', [ Validators.required, Validators.pattern(this.validatorService.emailPattern)], [ this.emailValidatorService ] ],
+    nombre: ['',
+      [
+        Validators.required,
+        Validators.pattern(this.validatorService.namePattern)
+      ]
+    ],
+    email: ['',
+      [
+        Validators.required,
+        Validators.pattern(this.validatorService.emailPattern)
+      ],
+      [ this.emailValidatorService ]
+    ],
     username: ['', [ Validators.required, this.validatorService.invalidUsername ] ],
     password: ['', [ Validators.required, Validators.minLength(6) ] ],
     confirm: ['', [ Validators.required ] ],
   }, {
+    // Se agrega aquí por ser una validación grupal.
     validators: [ this.validatorService.equalFields('password', 'confirm') ]
   });
 
-  constructor( 
+  constructor(
     private formBuilder: UntypedFormBuilder,
     private emailValidatorService: EmailValidatorService,
-    private validatorService: ValidatorService 
+    private validatorService: ValidatorService
   ) { }
 
   invalidField(field: string): boolean | undefined {

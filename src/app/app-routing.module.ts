@@ -10,6 +10,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'basics',
+    loadChildren: () => import('./basics/basics.module').then(m => m.BasicsModule)
+  },
+  {
     path: 'reactive',
     loadChildren: ()=> import('./reactive/reactive.module').then(m => m.ReactiveModule)
   },
