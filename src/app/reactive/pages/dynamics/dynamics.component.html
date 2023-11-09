@@ -14,7 +14,8 @@
             placeholder="Nombre"
             formControlName="nombre"
           >
-          <span class="text-form text-danger" *ngIf="validarCampo('nombre')">
+
+          <span class="form-text text-danger" *ngIf="invalidField()">
             El campo es obligatorio
           </span>
         </div>
@@ -30,10 +31,10 @@
               class="form-control"
               placeholder="Agregar favorito"
               [formControl]="nuevoFavorito"
-              (keyup.enter)="add()"
+              (keyup.enter)="addFormControl()"
             >
 
-            <button class="btn btn-outline-primary" type="button" (click)="add()">
+            <button class="btn btn-outline-primary" type="button" [disabled]="nuevoFavorito.invalid" (click)="addFormControl()">
               Agregar
             </button>
           </div>
@@ -44,10 +45,10 @@
         <label class="col-form-label col-sm-3"> Favoritos </label>
 
         <div class="col-sm-9" formArrayName="favoritos">
-          <div class="input-group mb-1" *ngFor="let favorito of favoritosArr.controls; let i = index">
-            <input class="form-control mb-1" [formControlName]="i">
+          <div class="input-group mb-2" *ngFor="let favorito of favoritosArray.controls; let i = index">
+            <input class="form-control" [formControlName]="i">
 
-            <button class="btn btn-outline-danger" type="button" (click)="delete(i)">
+            <button class="btn btn-outline-danger" type="button" (click)="deleteFormControl(i)">
               Eliminar
             </button>
           </div>
@@ -70,12 +71,7 @@
     <pre> {{ miFormulario.valid }} </pre>
     <hr>
 
-    <span [style.fontWeight]="'800'"> Valor de mi formulario: </span>
+    <span [style.fontWeight]="'800'"> Valor del formulario: </span>
     <pre> {{ miFormulario.value | json }} </pre>
-    <hr>
-
-    <span [style.fontWeight]="'800'"> Agregar juego: </span>
-    <pre> {{ nuevoFavorito.valid }} </pre>
-    <hr>
   </div>
 </div>

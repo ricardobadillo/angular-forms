@@ -1,6 +1,6 @@
 // Angular.
 import { Component } from '@angular/core';
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -11,40 +11,49 @@ import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGr
 })
 export class DynamicsComponent {
 
-  miFormulario: UntypedFormGroup = this.formBuilder.group({
-    nombre: [ , [
-      Validators.required,
-      Validators.minLength(3)
-    ] ],
-    favoritos: this.formBuilder.array( [
-      [ 'Doom' ],
-      [ 'Outlast' ]
-    ], Validators.required )
-  });
+  nuevoFavorito: FormControl<string> = this.formBuilder.control('', { nonNullable: true, validators: [ Validators.required ] });
 
-  nuevoFavorito: UntypedFormControl = this.formBuilder.control('', Validators.required);
+  miFormulario: FormGroup<{
+    nombre: FormControl<string>;
+    favoritos: FormArray<FormControl<string>>;
+  }>;
 
-  get favoritosArr(): UntypedFormArray {
-    return this.miFormulario.get('favoritos') as UntypedFormArray;
-  };
+  get favoritosArray(): FormArray {
+    return this.miFormulario.get('favoritos') as FormArray;
+  }
 
-  constructor( private formBuilder: UntypedFormBuilder ) { }
 
-  add(): void {
+  constructor(private formBuilder: FormBuilder) {
+    this.miFormulario = this.formBuilder.group({
+      nombre: new FormControl('', { nonNullable: true, validators: [ Validators.required, Validators.minLength(3) ] }),
+      favoritos: new FormArray([
+        new FormControl('Metal Gear', { nonNullable: true, validators: [ Validators.required ] }),
+        new FormControl('Death Stranding', { nonNullable: true, validators: [ Validators.required ] })
+      ], Validators.required)
+    });
+  }
+
+  addFormControl(): void {
     if (this.miFormulario.invalid) {
       return;
     }
 
-    this.favoritosArr.push( this.formBuilder.control( this.nuevoFavorito.value, Validators.required ));
+    this.favoritosArray.push(this.formBuilder.control(this.nuevoFavorito.value, Validators.required));
     this.nuevoFavorito.reset();
   };
 
-  delete(index: number): void {
-    this.favoritosArr.removeAt(index);
+  getFormControl(index: number): FormControl {
+    return this.favoritosArray.at(index) as FormControl;
+  }
+
+  deleteFormControl(index: number): void {
+    this.favoritosArray.removeAt(index);
   };
 
-  validarCampo( campo: string ): boolean | null {
-    return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched;
+  invalidField(): boolean | null {
+
+    return this.miFormulario?.controls.nombre.invalid
+      && this.miFormulario?.controls.nombre.touched;
   };
 
   saveData(): void {

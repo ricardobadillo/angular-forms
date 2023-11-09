@@ -10,10 +10,7 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 
 @NgModule({
   declarations: [ SidemenuComponent ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
+  imports: [ CommonModule, RouterModule ],
   exports: [ SidemenuComponent ]
 })
 export class SharedModule { }

@@ -34,15 +34,12 @@ export class BasicsComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit(): void {
-    /*
-      ❗ Ver los valores del formulario de manera reactiva.
-      this.miFormulario.valueChanges?.subscribe(console.log);
-    */
 
-    /*
-      ❗ Ver el status del formulario de manera reactiva.
-      this.miFormulario.statusChanges?.subscribe(console.log);
-    */
+    // ❗ Ver los valores del formulario de manera reactiva.
+    this.miFormulario.valueChanges?.subscribe(console.log);
+
+    //❗ Ver el status del formulario de manera reactiva.
+    this.miFormulario.statusChanges?.subscribe(console.log);
   }
 
   saveData(): void {

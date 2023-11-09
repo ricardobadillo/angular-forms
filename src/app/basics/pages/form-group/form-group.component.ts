@@ -1,9 +1,8 @@
 // Angular.
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-// Modelo.
-export interface BasicForm {
+interface BasicForm {
   age: FormControl<number>,
   fullName: FormGroup<{
     name: FormControl<string>,
@@ -18,7 +17,7 @@ export interface BasicForm {
   templateUrl: './form-group.component.html',
   styleUrls: ['./form-group.component.scss']
 })
-export class FormGroupComponent implements OnInit {
+export class FormGroupComponent {
 
   miFormulario: FormGroup<BasicForm>;
 
@@ -48,13 +47,12 @@ export class FormGroupComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
   saveData(): void {
     const name = this.miFormulario.get('fullName')?.get('name')?.value;
     const lastName = this.miFormulario.get('fullName.lastName')?.value;
 
     console.log(`El nombre posteado es: ${name} ${lastName}`);
+
+    this.miFormulario.reset();
   }
 }

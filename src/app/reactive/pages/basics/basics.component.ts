@@ -12,9 +12,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class BasicsComponent {
 
   miFormulario: FormGroup<{
-    producto: FormControl<string | null>,
-    precio: FormControl<number | null>,
-    existencia: FormControl<number | null>
+    producto: FormControl<string>,
+    precio: FormControl<number>,
+    existencia: FormControl<number>
   }>;
 
   get invalidProductName(): boolean {
@@ -35,17 +35,17 @@ export class BasicsComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.miFormulario = this.formBuilder.group({
-      producto: new FormControl('', { validators: [ Validators.minLength(3), Validators.required ] }),
-      precio: new FormControl(0, { validators: [ Validators.min(0), Validators.required ] }),
-      existencia: new FormControl(0, { validators: [ Validators.min(0), Validators.required ] })
+      producto: new FormControl('', { nonNullable: true, validators: [ Validators.minLength(3), Validators.required ] }),
+      precio: new FormControl(0, { nonNullable: true, validators: [ Validators.min(0), Validators.required ] }),
+      existencia: new FormControl(0, { nonNullable: true, validators: [ Validators.min(0), Validators.required ] })
     });
   }
 
   validateField(field: string): boolean | null {
     const values = this.miFormulario.getRawValue();
+    console.log(values);
 
     return null;
-    // return this.miFormulario.getRawValue().[campo].errors && this.miFormulario.getRawValue().[campo].touched;
   }
 
   saveData(): void {
@@ -54,9 +54,7 @@ export class BasicsComponent {
       return;
     }
 
-    // const values = this.miFormulario.getRawValue();
-    // console.log(values);
-
+    console.log('Posteo correcto');
     this.miFormulario.reset();
   }
 }

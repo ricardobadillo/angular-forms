@@ -11,7 +11,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class FormControlComponent {
 
-  // El nombre del error es del nombre del validador.
+  // El nombre del error es el nombre del validador.
   ageField = new FormControl(0, [ Validators.min(0) ]);
 
   nameField = new FormControl('Ricardo');

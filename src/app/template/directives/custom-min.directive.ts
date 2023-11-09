@@ -5,7 +5,7 @@ import { FormControl, NG_VALIDATORS, Validator } from '@angular/forms';
 
 
 @Directive({
-    selector: '[customMin][ngModel]',
+    selector: '[appCustomMin][ngModel]',
     providers: [{
       provide: NG_VALIDATORS,
       useExisting: CustomMinDirective,
@@ -19,7 +19,7 @@ export class CustomMinDirective implements Validator {
 
   constructor() { }
 
-  validate(control: FormControl<number>) {
+  validate(control: FormControl<number>): { error: boolean } | null {
     const inputValue = control.value;
 
     return (inputValue < this.minimo)

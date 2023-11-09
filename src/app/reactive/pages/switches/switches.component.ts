@@ -1,6 +1,12 @@
 // Angular.
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+
+interface FormSwitch {
+  genero: FormControl<string>;
+  notificaciones: FormControl<boolean>;
+  terminos: FormControl<boolean>;
+};
 
 
 
@@ -11,18 +17,16 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 })
 export class SwitchesComponent implements OnInit {
 
-  miFormulario: UntypedFormGroup = this.formBuilder.group({
+  miFormulario: FormGroup = this.formBuilder.group({
     genero: [ 'M', Validators.required ],
     notificaciones: [ true, Validators.required ],
     terminos: [ false, Validators.requiredTrue ]
   });
 
-  persona = {
-    genero: 'F',
-    notificaciones: true
-  };
+  persona = { genero: 'F', notificaciones: true };
 
-  constructor( private formBuilder: UntypedFormBuilder ) { }
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.miFormulario.reset({
@@ -31,10 +35,9 @@ export class SwitchesComponent implements OnInit {
     });
 
     this.miFormulario.valueChanges.subscribe(form => {
-      console.log(form);
       delete form.condiciones;
       this.persona = form; 
-    })
+    });
   };
 
   saveData(): void {

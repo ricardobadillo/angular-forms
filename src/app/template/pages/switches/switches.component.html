@@ -69,7 +69,6 @@
                 name="terminos"
                 required
                 type="checkbox"
-                value=""
                 [(ngModel)]="persona.terminos"
               >
 
@@ -80,7 +79,7 @@
 
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary" type="submit" [disabled]="miFormulario.invalid">
+          <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">
             Guardar
           </button>
         </div>
@@ -92,16 +91,15 @@
 <div class="mt-3 row">
   <div class="col">
     <hr>
-    <span [style.fontWeight]="'800'"> Valor del formulario: </span>
-    <pre> {{ miFormulario.value | json }} </pre>
-    <hr>
-
     <span [style.fontWeight]="'800'"> Valid: </span>
     <pre> {{ miFormulario.valid }} </pre>
     <hr>
 
+    <span [style.fontWeight]="'800'"> Valor del formulario: </span>
+    <pre> {{ miFormulario.value | json }} </pre>
+    <hr>
+
     <span [style.fontWeight]="'800'"> Persona: </span>
     <pre> {{ persona | json }} </pre>
-    <hr>
   </div>
 </div>

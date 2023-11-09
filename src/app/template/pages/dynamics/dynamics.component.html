@@ -17,6 +17,7 @@
             required
             [(ngModel)]="persona.nombre"
           >
+
           <span class="text-form text-danger" *ngIf="invalidName">
             El campo es obligatorio
           </span>
@@ -48,13 +49,8 @@
         <label class="col-form-label col-sm-3"> Favoritos </label>
 
         <div class="col-sm-9">
-          <div class="input-group mb-1" *ngFor="let item of persona.favoritos; let i = index">
-            <input
-              class="form-control mb-1"
-              name="favorito-{{ i }}"
-              required
-              [(ngModel)]="item.nombre"
-            >
+          <div class="input-group mb-2" *ngFor="let item of persona.favoritos; let i = index">
+            <input class="form-control" name="favorito-{{ i }}" required [(ngModel)]="item.nombre">
 
             <button class="btn btn-outline-danger" type="button" (click)="deleteFavorite(i)">
               Eliminar
@@ -83,6 +79,5 @@
 
     <span [style.fontWeight]="'800'"> Error del campo "Nombre": </span>
     <pre> {{ miFormulario.form.controls.nombre && miFormulario.form.controls.nombre.errors | json }} </pre>
-    <hr>
   </div>
 </div>

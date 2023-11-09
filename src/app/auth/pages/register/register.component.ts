@@ -4,7 +4,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 
 // Servicios.
 import { EmailValidatorService } from '../../../shared/validators/email-validator.service';
-import { ValidatorService } from '../../../shared/validators/validator.service';
+import { EqualFiedlsService } from '../../../shared/validators/equal-fields-validator.service';
 
 
 
@@ -18,14 +18,16 @@ export class RegisterComponent {
   get emailMessageError(): string {
 
     const errors = this.miFormulario.get('email')?.errors;
-
+  
     if (errors?.required) {
       return 'El email es obligatorio';
+
     } else if (errors?.pattern) {
       return 'No tiene formato de email';
+      
     } else if (errors?.emailExiste) {
       return 'El email ya existe';
-    }
+    } 
 
     return '';
   };
@@ -34,28 +36,28 @@ export class RegisterComponent {
     nombre: ['',
       [
         Validators.required,
-        Validators.pattern(this.validatorService.namePattern)
+        Validators.pattern(this.equalFieldsService.namePattern)
       ]
     ],
     email: ['',
       [
         Validators.required,
-        Validators.pattern(this.validatorService.emailPattern)
+        Validators.pattern(this.equalFieldsService.emailPattern)
       ],
       [ this.emailValidatorService ]
     ],
-    username: ['', [ Validators.required, this.validatorService.invalidUsername ] ],
+    username: ['', [ Validators.required, this.equalFieldsService.invalidUsername ] ],
     password: ['', [ Validators.required, Validators.minLength(6) ] ],
     confirm: ['', [ Validators.required ] ],
   }, {
     // Se agrega aquí por ser una validación grupal.
-    validators: [ this.validatorService.equalFields('password', 'confirm') ]
+    validators: [ this.equalFieldsService.equalFields('password', 'confirm') ]
   });
 
   constructor(
     private formBuilder: UntypedFormBuilder,
     private emailValidatorService: EmailValidatorService,
-    private validatorService: ValidatorService
+    private equalFieldsService: EqualFiedlsService
   ) { }
 
   invalidField(field: string): boolean | undefined {

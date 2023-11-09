@@ -5,10 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // Componentes.
 import { FormControlComponent } from './pages/form-control/form-control.component';
+import { FormGroupComponent } from './pages/form-group/form-group.component';
 
 // Módulos.
 import { BasicsRoutingModule } from './basics-routing.module';
-import { FormGroupComponent } from './pages/form-group/form-group.component';
 
 
 
