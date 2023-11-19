@@ -20,6 +20,7 @@ export class SwitchesComponent {
 
   saveData(): void {
     console.log('Posteo correcto');
+    console.log(this.miFormulario.value);
     this.miFormulario.reset({ genero: '', notificaciones: false, terminos: false });
   }
 }

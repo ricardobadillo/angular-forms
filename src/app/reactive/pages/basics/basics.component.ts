@@ -41,20 +41,9 @@ export class BasicsComponent {
     });
   }
 
-  validateField(field: string): boolean | null {
-    const values = this.miFormulario.getRawValue();
-    console.log(values);
-
-    return null;
-  }
-
   saveData(): void {
-    if (this.miFormulario.invalid) {
-      this.miFormulario.markAllAsTouched();
-      return;
-    }
-
     console.log('Posteo correcto');
+    console.log(this.miFormulario.value);
     this.miFormulario.reset();
   }
 }

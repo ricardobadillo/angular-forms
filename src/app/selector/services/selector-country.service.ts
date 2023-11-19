@@ -12,16 +12,14 @@ import { map } from 'rxjs/operators';
 
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class SelectorCountryService {
 
   private baseUrl: string = 'https://restcountries.com/v3.1';
   private _regiones: string[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 
   get regiones() {
-    return [... this._regiones];
+    return [ ...this._regiones ];
   }
 
   constructor( private http: HttpClient) { }

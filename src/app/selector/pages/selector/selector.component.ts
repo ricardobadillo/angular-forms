@@ -1,6 +1,6 @@
 // Angular.
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, FormGroup, Form, FormControl } from '@angular/forms';
 
 // Modelos.
 import { Country } from '../../models/country';
@@ -21,11 +21,11 @@ import { SelectorCountryService } from '../../services/selector-country.service'
 })
 export class SelectorComponent implements OnInit {
 
-  miFormulario: UntypedFormGroup = this.formBuilder.group({
-    region:     [ '', Validators.required ],
-    pais:       [ '', Validators.required ],
-    fronteras:  [ '', Validators.required ]
-  });
+  miFormulario: FormGroup<{
+    region: FormControl<string>;
+    pais: FormControl<string>;
+    fronteras: FormControl<string>;
+  }>
 
   paises:     Country[] = [];
   regiones:   string[]  = [];
@@ -33,17 +33,21 @@ export class SelectorComponent implements OnInit {
 
   loading: boolean = false;
 
-  constructor( 
-    private formBuilder: UntypedFormBuilder,
-    private selectorCountryService: SelectorCountryService 
-  ) { }
+
+  constructor(private formBuilder: UntypedFormBuilder, private selectorCountryService: SelectorCountryService ) {
+    this.miFormulario = this.formBuilder.group({
+      region: new FormControl('', { nonNullable: true, validators: [ Validators.required ] }),
+      pais: new FormControl('', { nonNullable: true, validators: [ Validators.required ] }),
+      fronteras: new FormControl('', { nonNullable: true, validators: [ Validators.required ] }),
+    });
+  }
 
   ngOnInit(): void {
     this.regiones = this.selectorCountryService.regiones;
-  
+
     this.miFormulario.get('region')?.valueChanges
       .pipe(
-        tap(() => { 
+        tap(() => {
           this.miFormulario.get('pais')?.reset('');
           this.loading = true;
         }),
@@ -52,7 +56,7 @@ export class SelectorComponent implements OnInit {
         this.loading = false;
         this.paises = paises
       });
-    
+
     this.miFormulario.get('pais')?.valueChanges
       .pipe(
         tap(() => {
@@ -65,8 +69,7 @@ export class SelectorComponent implements OnInit {
         .subscribe((paises: Country[]) => {
           this.fronteras = paises;
           this.loading = false;
-        });
-      
+      });
   };
 
   saveData(): void {

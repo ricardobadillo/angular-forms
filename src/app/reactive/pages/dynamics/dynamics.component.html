@@ -57,14 +57,14 @@
 
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary float-end" type="submit"> Guardar </button>
+          <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid"> Guardar </button>
         </div>
       </div>
     </form>
   </div>
 </div>
 
-<div class="row">
+<div class="mt-1 row">
   <div class="col">
     <hr>
     <span [style.fontWeight]="'800'"> Valid: </span>

@@ -1,4 +1,4 @@
-<h1 class="mt-5"> Selectores anidados </h1>
+<h1> Selectores anidados </h1>
 <hr>
 
 <form [formGroup]="miFormulario" (ngSubmit)="saveData()">
@@ -57,7 +57,7 @@
     <pre> {{ miFormulario.valid }} </pre>
     <hr>
 
-    <span [style.fontWeight]="'800'"> Value: </span>
+    <span [style.fontWeight]="'800'"> Valor del formulario: </span>
     <pre> {{ miFormulario.value | json }} </pre>
     <hr>
   </div>

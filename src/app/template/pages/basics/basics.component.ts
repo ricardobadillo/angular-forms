@@ -1,6 +1,9 @@
 // Angular.
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
+// RXJS.
+import { Subscription } from 'rxjs';
 
 
 
@@ -9,7 +12,10 @@ import { NgForm } from '@angular/forms';
   templateUrl: './basics.component.html',
   styleUrls: ['./basics.component.scss']
 })
-export class BasicsComponent implements AfterViewInit {
+export class BasicsComponent implements AfterViewInit, OnDestroy {
+
+  statusChangesSubscription?: Subscription;
+  valuesChangesSubscription?: Subscription;
 
   initialForm = { producto: '', precio: 0, existencia: 0 };
 
@@ -34,12 +40,16 @@ export class BasicsComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit(): void {
+    //❗ Ver el status del formulario de manera reactiva.
+    this.statusChangesSubscription = this.miFormulario.statusChanges?.subscribe(console.log);
 
     // ❗ Ver los valores del formulario de manera reactiva.
-    this.miFormulario.valueChanges?.subscribe(console.log);
+    this.valuesChangesSubscription = this.miFormulario.valueChanges?.subscribe(console.log);
+  }
 
-    //❗ Ver el status del formulario de manera reactiva.
-    this.miFormulario.statusChanges?.subscribe(console.log);
+  ngOnDestroy(): void {
+    this.statusChangesSubscription?.unsubscribe();
+    this.valuesChangesSubscription?.unsubscribe();
   }
 
   saveData(): void {

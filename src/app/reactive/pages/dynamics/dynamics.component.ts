@@ -11,7 +11,9 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class DynamicsComponent {
 
-  nuevoFavorito: FormControl<string> = this.formBuilder.control('', { nonNullable: true, validators: [ Validators.required ] });
+  nuevoFavorito: FormControl<string> = this.formBuilder.control('',
+    { nonNullable: true, validators: [ Validators.required ] }
+  );
 
   miFormulario: FormGroup<{
     nombre: FormControl<string>;
@@ -34,10 +36,6 @@ export class DynamicsComponent {
   }
 
   addFormControl(): void {
-    if (this.miFormulario.invalid) {
-      return;
-    }
-
     this.favoritosArray.push(this.formBuilder.control(this.nuevoFavorito.value, Validators.required));
     this.nuevoFavorito.reset();
   };
@@ -51,17 +49,13 @@ export class DynamicsComponent {
   };
 
   invalidField(): boolean | null {
-
     return this.miFormulario?.controls.nombre.invalid
-      && this.miFormulario?.controls.nombre.touched;
+        && this.miFormulario?.controls.nombre.touched;
   };
 
   saveData(): void {
-    if (this.miFormulario.invalid) {
-      this.miFormulario.markAllAsTouched();
-      return;
-    }
-
-    console.log(this.miFormulario);
+    console.log('Posteo correcto');
+    console.log(this.miFormulario.value);
+    console.log(this.miFormulario.value);
   };
 }

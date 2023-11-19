@@ -32,13 +32,13 @@
             <input
               autocomplete="off"
               class="form-control"
-              name="nuevoFavorito"
               placeholder="Agregar favorito"
-              [(ngModel)]="nuevoFavorito"
+              #inputValue
+              (input)="onKey($event)"
               (keyup.enter)="addFavorite()"
             >
 
-            <button class="btn btn-outline-primary" type="button" (click)="addFavorite()">
+            <button class="btn btn-outline-primary" type="button" [disabled]="!enableForm" (click)="addFavorite()">
               Agregar
             </button>
           </div>
@@ -50,7 +50,12 @@
 
         <div class="col-sm-9">
           <div class="input-group mb-2" *ngFor="let item of persona.favoritos; let i = index">
-            <input class="form-control" name="favorito-{{ i }}" required [(ngModel)]="item.nombre">
+            <input
+              class="form-control"
+              name="favorito-{{ i }}"
+              required
+              [(ngModel)]="item.nombre"
+            >
 
             <button class="btn btn-outline-danger" type="button" (click)="deleteFavorite(i)">
               Eliminar
@@ -70,7 +75,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="mt-1 row">
   <div class="col">
     <hr>
     <span [style.fontWeight]="'800'"> Valor del formulario: </span>

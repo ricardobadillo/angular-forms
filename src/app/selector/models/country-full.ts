@@ -34,7 +34,7 @@ export interface CountryFull {
   tld:          string[];
   translations: { [key: string]: Translation };
   unMember:     boolean;
-};
+}
 
 export interface CapitalInfo {
   latlng: number[];
@@ -52,11 +52,6 @@ export interface CoatOfArms {
 
 export interface Currencies {
   VES: Ves;
-}
-
-export interface Ves {
-  name:   string;
-  symbol: string;
 }
 
 export interface Demonyms {
@@ -97,12 +92,17 @@ export interface NativeName {
   spa: Translation;
 }
 
+export interface PostalCode {
+  format: string;
+  regex:  string;
+}
+
 export interface Translation {
   common:   string;
   official: string;
 }
 
-export interface PostalCode {
-  format: string;
-  regex:  string;
+export interface Ves {
+  name:   string;
+  symbol: string;
 }
