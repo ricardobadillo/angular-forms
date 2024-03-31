@@ -9,10 +9,9 @@
 
         <div class="col-sm-9">
           <input
-            type="text"
             class="form-control"
-            formControlName="nombre"
             placeholder="Nombre del usuario"
+            formControlName="nombre"
           >
 
           <span class="form-text text-danger" *ngIf="invalidField('nombre')">
@@ -26,10 +25,10 @@
 
         <div class="col-sm-9">
           <input
-              formControlName="email"
-              type="email"
-              class="form-control"
-              placeholder="Email del usuario"
+            class="form-control"
+            placeholder="Email del usuario"
+            type="email"
+            formControlName="email"
           >
           <span class="form-text text-danger" *ngIf="invalidField('email')">
             {{ emailMessageError }}

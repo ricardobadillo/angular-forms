@@ -144,10 +144,6 @@
     <pre> {{ ageField.value }} </pre>
     <hr>
 
-    <span [style.fontWeight]="'800'"> Error del campo "Edad": </span>
-    <pre> {{ ageField.errors | json }} </pre>
-    <hr>
-
     <span [style.fontWeight]="'800'"> Valor del campo "Categoría": </span>
     <pre> {{ categoryField.value }} </pre>
     <hr>
@@ -158,5 +154,9 @@
 
     <span [style.fontWeight]="'800'"> Valor del campo "Género": </span>
     <pre> {{ genderField.value }} </pre>
+
+    <hr>
+    <span [style.fontWeight]="'800'"> Error del campo "Edad": </span>
+    <pre> {{ ageField.errors | json }} </pre>
   </div>
 </div>

@@ -54,6 +54,7 @@ export class BasicsComponent implements AfterViewInit, OnDestroy {
 
   saveData(): void {
     console.log('Posteo correcto');
+    console.log(this.miFormulario.value);
     this.miFormulario.resetForm({ producto: '', precio: 0, existencia: 0 });
   }
 }

@@ -56,6 +56,6 @@ export class DynamicsComponent {
   saveData(): void {
     console.log('Posteo correcto');
     console.log(this.miFormulario.value);
-    console.log(this.miFormulario.value);
+    this.miFormulario.reset();
   };
 }
