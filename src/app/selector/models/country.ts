@@ -1,9 +1,5 @@
-// Modelos.
-import { CountryName } from "./country-name";
-
-
-
 export interface Country {
-  cca3: string;
-  name: CountryName;
-};
+  borders: Array<string>;
+  cca3:    string;
+  name:    { common: string; };
+}

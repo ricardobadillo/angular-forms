@@ -1,10 +1,10 @@
 // Angular.
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormGroup, Form, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 // Modelos.
 import { Country } from '../../models/country';
-import { CountryFull } from '../../models/country-full';
+import { Region } from '../../models/region';
 
 // RXJS.
 import { switchMap, tap } from 'rxjs/operators';
@@ -17,7 +17,6 @@ import { SelectorCountryService } from '../../services/selector-country.service'
 @Component({
   selector: 'app-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class SelectorComponent implements OnInit {
 
@@ -27,14 +26,14 @@ export class SelectorComponent implements OnInit {
     fronteras: FormControl<string>;
   }>
 
-  paises:     Country[] = [];
-  regiones:   string[]  = [];
-  fronteras:  Country[]  = [];
+  public paises:    Array<Country> = [];
+  public regionMap = { 'Africa': 'África', 'Americas': 'América', 'Asia': 'Asia', 'Europe': 'Europa', 'Oceania': 'Oceanía' };
+  public regiones:  Array<Region>  = [];
+  public fronteras: Array<Country> = [];
+  public loading    = false;
 
-  loading: boolean = false;
 
-
-  constructor(private formBuilder: UntypedFormBuilder, private selectorCountryService: SelectorCountryService ) {
+  constructor(private formBuilder: FormBuilder, private selectorCountryService: SelectorCountryService ) {
     this.miFormulario = this.formBuilder.group({
       region: new FormControl('', { nonNullable: true, validators: [ Validators.required ] }),
       pais: new FormControl('', { nonNullable: true, validators: [ Validators.required ] }),
@@ -47,29 +46,25 @@ export class SelectorComponent implements OnInit {
 
     this.miFormulario.get('region')?.valueChanges
       .pipe(
-        tap(() => {
-          this.miFormulario.get('pais')?.reset('');
-          this.loading = true;
-        }),
-        switchMap((region: string) => this.selectorCountryService.getCountriesForRegion(region))
-      ).subscribe((paises: Country[]) => {
+        tap(() => this.miFormulario.get('pais')?.reset('')),
+        tap(() => this.loading = true),
+        switchMap((region: string) => this.selectorCountryService.getCountriesByRegion(region))
+      ).subscribe((paises: Array<Country>) => {
         this.loading = false;
         this.paises = paises
       });
 
     this.miFormulario.get('pais')?.valueChanges
       .pipe(
-        tap(() => {
-          this.fronteras = [];
-          this.miFormulario.get('fronteras')?.reset('');
-          this.loading = true;
-        }),
-        switchMap((code: string) => this.selectorCountryService.getCountryForAlphaCode(code)),
-        switchMap((pais: CountryFull | null) => this.selectorCountryService.getCountriesByBorders(pais?.borders!)))
-        .subscribe((paises: Country[]) => {
-          this.fronteras = paises;
+        tap(() => this.fronteras = []),
+        tap(() => this.miFormulario.get('fronteras')?.reset('')),
+        tap(() => this.loading = true),
+        switchMap((alphaCode: string) => this.selectorCountryService.getCountryByAlphaCode(alphaCode)),
+        switchMap((country: Country | null) => this.selectorCountryService.getCountriesByBorders(country?.borders!))
+      ).subscribe((countries: Array<Country>) => {
+          this.fronteras = countries;
           this.loading = false;
-      });
+        });
   };
 
   saveData(): void {

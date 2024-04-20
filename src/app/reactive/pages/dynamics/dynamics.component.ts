@@ -7,7 +7,6 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 @Component({
   selector: 'app-dynamics',
   templateUrl: './dynamics.component.html',
-  styleUrls: ['./dynamics.component.scss']
 })
 export class DynamicsComponent {
 
@@ -21,6 +20,7 @@ export class DynamicsComponent {
   }>;
 
   get favoritosArray(): FormArray {
+    console.log(this.miFormulario.get('favoritos'));
     return this.miFormulario.get('favoritos') as FormArray;
   }
 
@@ -40,13 +40,13 @@ export class DynamicsComponent {
     this.nuevoFavorito.reset();
   };
 
-  getFormControl(index: number): FormControl {
-    return this.favoritosArray.at(index) as FormControl;
-  }
-
   deleteFormControl(index: number): void {
     this.favoritosArray.removeAt(index);
   };
+
+  getFormControl(index: number): FormControl {
+    return this.favoritosArray.at(index) as FormControl;
+  }
 
   invalidField(): boolean | null {
     return this.miFormulario?.controls.nombre.invalid

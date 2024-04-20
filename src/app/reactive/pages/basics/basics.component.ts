@@ -2,12 +2,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+type FormField = 'existencia' | 'precio' | 'producto';
+
 
 
 @Component({
   selector: 'app-basics',
   templateUrl: './basics.component.html',
-  styleUrls: ['./basics.component.scss']
 })
 export class BasicsComponent {
 
@@ -30,6 +31,11 @@ export class BasicsComponent {
   get invalidExistence(): boolean {
     return this.miFormulario.controls.existencia.invalid
         && this.miFormulario.controls.existencia.touched;
+  }
+
+  invalidField(field: FormField): boolean | null {
+    return this.miFormulario?.controls[field].invalid
+        && this.miFormulario?.controls[field].touched;
   }
 
 

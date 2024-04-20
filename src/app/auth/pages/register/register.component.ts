@@ -10,24 +10,24 @@ import { EqualFiedlsService } from '../../../shared/validators/equal-fields-vali
 
 @Component({
   selector: 'app-register',
+  styleUrls: ['./register.component.scss'],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
 
   get emailMessageError(): string {
 
     const errors = this.miFormulario.get('email')?.errors;
-  
+
     if (errors?.required) {
       return 'El email es obligatorio';
 
     } else if (errors?.pattern) {
       return 'No tiene formato de email';
-      
+
     } else if (errors?.emailExiste) {
       return 'El email ya existe';
-    } 
+    }
 
     return '';
   };

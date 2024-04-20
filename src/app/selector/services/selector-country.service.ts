@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 // Modelos.
 import { Country } from '../models/country';
-import { CountryFull } from '../models/country-full';
+import { Region } from '../models/region';
 
 // RXJS.
 import { combineLatest, Observable, of } from 'rxjs';
@@ -16,48 +16,38 @@ import { map } from 'rxjs/operators';
 export class SelectorCountryService {
 
   private baseUrl: string = 'https://restcountries.com/v3.1';
-  private _regiones: string[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
+  private _regiones: Array<Region> = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 
-  get regiones() {
+  get regiones(): Array<Region> {
     return [ ...this._regiones ];
   }
 
   constructor( private http: HttpClient) { }
 
-  getCountriesForRegion(region: string): Observable<Country[]> {
-    const url: string = `${this.baseUrl}/region/${region}?fields=name,cca3`;
-
-    return this.http.get<Country[]>(url);
+  getCountriesByRegion(region: string): Observable<Array<Country>> {
+    return this.http.get<Array<Country>>(`${this.baseUrl}/region/${region}?fields=name,cca3`);
   };
 
-  getCountryForAlphaCode(code: string): Observable<CountryFull | null> {
+  getCountryByAlphaCode(code: string): Observable<Country | null> {
 
-    if (!code) {
-      return of(null);
-    };
+    if (!code) return of(null);
 
-    const url: string = `${this.baseUrl}/alpha/${code}`;
-
-    return this.http.get<CountryFull | null>(url)
+    return this.http.get<Country | null>(`${this.baseUrl}/alpha/${code}`)
       .pipe(map(pais => pais instanceof Array ? pais[0] : pais));
   };
 
-  getCountryNameForAlphaCode(code: string): Observable<Country> {
-    const url: string = `${this.baseUrl}/alpha/${code}?fields=cca3,name`;
-
-    return this.http.get<Country>(url);
+  getCountryNameByAlphaCode(code: string): Observable<Country> {
+    return this.http.get<Country>(`${this.baseUrl}/alpha/${code}?fields=cca3,name`);
   };
 
-  getCountriesByBorders(borders: string[]): Observable<Country[]> {
+  getCountriesByBorders(borders: Array<string>): Observable<Array<Country>> {
 
-    if (!borders) {
-      return of([]);
-    };
+    if (!borders) return of([]);
 
     const requests: Observable<Country>[] = [];
 
     borders.forEach(code => {
-      const request = this.getCountryNameForAlphaCode(code);
+      const request = this.getCountryNameByAlphaCode(code);
       requests.push(request);
     });
 

@@ -6,8 +6,8 @@ import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-control',
+  styleUrls: ['./form-control.component.scss'],
   templateUrl: './form-control.component.html',
-  styleUrls: ['./form-control.component.scss']
 })
 export class FormControlComponent {
 
