@@ -10,19 +10,14 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class DynamicsComponent {
 
-  nuevoFavorito: FormControl<string> = this.formBuilder.control('',
+  public nuevoFavorito: FormControl<string> = this.formBuilder.control('',
     { nonNullable: true, validators: [ Validators.required ] }
   );
 
-  miFormulario: FormGroup<{
+  public miFormulario: FormGroup<{
     nombre: FormControl<string>;
     favoritos: FormArray<FormControl<string>>;
   }>;
-
-  get favoritosArray(): FormArray {
-    return this.miFormulario.get('favoritos') as FormArray;
-  }
-
 
   constructor(private formBuilder: FormBuilder) {
     this.miFormulario = this.formBuilder.group({
@@ -36,25 +31,29 @@ export class DynamicsComponent {
     });
   }
 
-  addFormControl(): void {
+  get favoritosArray(): FormArray {
+    return this.miFormulario.get('favoritos') as FormArray;
+  }
+
+  public addFormControl(): void {
     this.favoritosArray.push(this.formBuilder.control(this.nuevoFavorito.value, Validators.required));
     this.nuevoFavorito.reset();
   };
 
-  deleteFormControl(index: number): void {
+  public deleteFormControl(index: number): void {
     this.favoritosArray.removeAt(index);
   };
 
-  getFormControl(index: number): FormControl {
+  public getFormControl(index: number): FormControl {
     return this.favoritosArray.at(index) as FormControl;
   }
 
-  invalidField(): boolean | null {
+  public invalidField(): boolean | null {
     return this.miFormulario?.controls.nombre.invalid
         && this.miFormulario?.controls.nombre.touched;
   };
 
-  saveData(): void {
+  public saveData(): void {
     console.log(this.miFormulario.value);
 
     this.miFormulario.reset();

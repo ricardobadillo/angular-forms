@@ -8,11 +8,12 @@ import { RegisterComponent } from './pages/register/register.component';
 
 // Módulos.
 import { AuthRoutingModule } from './auth-routing.module';
+import { CustomLabelDirective } from './directives/custom-label.directive';
 
 
 
 @NgModule({
-  declarations: [ RegisterComponent ],
+  declarations: [ RegisterComponent, CustomLabelDirective ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

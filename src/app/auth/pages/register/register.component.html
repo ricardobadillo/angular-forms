@@ -30,7 +30,12 @@
             type="email"
             formControlName="email"
           >
-          <span class="form-text text-danger" *ngIf="invalidField('email')">
+          <span appCustomLabel
+            class="form-text"
+            [color]="color"
+            [errors]="miFormulario.controls.email.errors"
+            *ngIf="invalidField('email')"
+          >
             {{ emailMessageError }}
           </span>
         </div>

@@ -12,17 +12,11 @@ type FieldName = 'existencia' | 'precio' | 'producto';
 })
 export class BasicsComponent {
 
-  miFormulario: FormGroup<{
+  public miFormulario: FormGroup<{
     producto: FormControl<string>;
     precio: FormControl<number>;
     existencia: FormControl<number>;
   }>;
-
-  invalidField(field: FieldName): boolean | null {
-    return this.miFormulario?.controls[field].invalid
-        && this.miFormulario?.controls[field].touched;
-  }
-
 
   constructor(private formBuilder: FormBuilder) {
     this.miFormulario = this.formBuilder.group({
@@ -38,7 +32,12 @@ export class BasicsComponent {
     });
   }
 
-  saveData(): void {
+  public invalidField(field: FieldName): boolean | null {
+    return this.miFormulario?.controls[field].invalid
+        && this.miFormulario?.controls[field].touched;
+  }
+
+  public saveData(): void {
     console.log(this.miFormulario.value);
 
     this.miFormulario.reset();

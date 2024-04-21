@@ -10,13 +10,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class SwitchesComponent implements OnInit {
 
-  miFormulario: FormGroup<{
+  public miFormulario: FormGroup<{
     genero: FormControl<string>;
     notificaciones: FormControl<boolean>;
     terminos: FormControl<boolean>;
   }>;
 
-  persona = { genero: 'F', notificaciones: true };
+  public persona = { genero: 'F', notificaciones: true };
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -31,7 +31,7 @@ export class SwitchesComponent implements OnInit {
     this.miFormulario.reset({ ...this.persona, terminos: false });
   };
 
-  saveData(): void {
+  public saveData(): void {
     const formValue = {... this.miFormulario.value };
     delete formValue.terminos;
 

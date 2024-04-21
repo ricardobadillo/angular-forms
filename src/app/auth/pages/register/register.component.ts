@@ -2,12 +2,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormControlOptions, FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 
-// Servicios.
-import { EmailValidator } from '../../../shared/validators/email-validator';
-import { EqualFiedls } from '../../../shared/validators/equal-fields-validator';
-
 // Validators.
 import { cantBeMe, emailPattern, namePattern } from 'src/app/shared/validators/validators';
+import { EmailValidator } from '../../../shared/validators/email-validator';
+import { EqualFiedls } from '../../../shared/validators/equal-fields-validator';
 
 
 
@@ -16,6 +14,8 @@ import { cantBeMe, emailPattern, namePattern } from 'src/app/shared/validators/v
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
+
+  public color = 'red';
 
   public miFormulario: FormGroup<{
     nombre: FormControl<string>;
@@ -35,7 +35,7 @@ export class RegisterComponent {
         validators: [ Validators.required, Validators.pattern(namePattern), cantBeMe ]
       }),
       email: new FormControl('', { nonNullable: true,
-        validators: [ Validators.required, Validators.pattern(emailPattern) ],
+        validators: [ Validators.required, Validators.minLength(15), Validators.pattern(emailPattern) ],
         asyncValidators: [ this.emailValidator.validate ]
       }),
       username: new FormControl('', { nonNullable: true,
@@ -52,7 +52,7 @@ export class RegisterComponent {
 
   get emailMessageError(): string {
 
-    const errors = this.miFormulario.get('email')?.errors;
+    const errors = this.miFormulario.controls.email.errors;
 
     if (errors?.required) {
       return 'El email es obligatorio';
@@ -65,15 +65,15 @@ export class RegisterComponent {
     }
 
     return '';
-  };
+  }
 
   public invalidField(field: string): boolean | undefined {
     return this.miFormulario.get(field)?.invalid && this.miFormulario.get(field)?.touched;
-  };
+  }
 
   public formSubmit(): void {
     console.log(this.miFormulario.value);
 
     this.miFormulario.markAllAsTouched();
-  };
+  }
 }

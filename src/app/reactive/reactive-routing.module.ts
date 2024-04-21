@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'basics',  component: BasicsComponent },
   { path: 'dynamics', component: DynamicsComponent },
   { path: 'switches', component: SwitchesComponent },
-  { path: '**', component: BasicsComponent }
+  { path: '**', component: BasicsComponent },
 ];
 
 @NgModule({
