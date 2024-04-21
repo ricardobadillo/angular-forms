@@ -1,19 +1,29 @@
 // Angular.
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormControlOptions, FormGroup, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 // Servicios.
-import { EmailValidatorService } from '../../../shared/validators/email-validator.service';
-import { EqualFiedlsService } from '../../../shared/validators/equal-fields-validator.service';
+import { EmailValidator } from '../../../shared/validators/email-validator';
+import { EqualFiedls } from '../../../shared/validators/equal-fields-validator';
+
+// Validators.
+import { cantBeMe, emailPattern, namePattern } from 'src/app/shared/validators/validators';
 
 
 
 @Component({
   selector: 'app-register',
-  styleUrls: ['./register.component.scss'],
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
+
+  miFormulario: FormGroup<{
+    nombre: FormControl<string>;
+    email: FormControl<string>;
+    username: FormControl<string>;
+    password: FormControl<string>;
+    confirm: FormControl<string>;
+  }>
 
   get emailMessageError(): string {
 
@@ -32,33 +42,30 @@ export class RegisterComponent {
     return '';
   };
 
-  miFormulario: UntypedFormGroup = this.formBuilder.group({
-    nombre: ['',
-      [
-        Validators.required,
-        Validators.pattern(this.equalFieldsService.namePattern)
-      ]
-    ],
-    email: ['',
-      [
-        Validators.required,
-        Validators.pattern(this.equalFieldsService.emailPattern)
-      ],
-      [ this.emailValidatorService ]
-    ],
-    username: ['', [ Validators.required, this.equalFieldsService.invalidUsername ] ],
-    password: ['', [ Validators.required, Validators.minLength(6) ] ],
-    confirm: ['', [ Validators.required ] ],
-  }, {
-    // Se agrega aquí por ser una validación grupal.
-    validators: [ this.equalFieldsService.equalFields('password', 'confirm') ]
-  });
-
   constructor(
     private formBuilder: UntypedFormBuilder,
-    private emailValidatorService: EmailValidatorService,
-    private equalFieldsService: EqualFiedlsService
-  ) { }
+    private emailValidator: EmailValidator,
+    private equalFields: EqualFiedls
+  ) {
+    this.miFormulario = this.formBuilder.group({
+      nombre: new FormControl('', { nonNullable: true,
+        validators: [ Validators.required, Validators.pattern(namePattern), cantBeMe ]
+      }),
+      email: new FormControl('', { nonNullable: true,
+        validators: [ Validators.required, Validators.pattern(emailPattern) ],
+        asyncValidators: [ this.emailValidator.validate ]
+      }),
+      username: new FormControl('', { nonNullable: true,
+        validators: [ Validators.required ]
+      }),
+      password: new FormControl('', { nonNullable: true,
+        validators: [ Validators.required, Validators.minLength(6) ]
+      }),
+      confirm: new FormControl('', { nonNullable: true,
+        validators: [ Validators.required ],
+      }),
+    }, { validators: this.equalFields.equalFields('password', 'confirm') } as FormControlOptions);
+  }
 
   invalidField(field: string): boolean | undefined {
     return this.miFormulario.get(field)?.invalid && this.miFormulario.get(field)?.touched;

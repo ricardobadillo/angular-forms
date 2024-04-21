@@ -20,4 +20,4 @@ import { SelectorRoutingModule } from './selector-routing.module';
     SelectorRoutingModule
   ]
 })
-export class SelectorModule { }
+export default class SelectorModule { }

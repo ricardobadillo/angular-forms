@@ -27,7 +27,7 @@ export class SelectorComponent implements OnInit {
   }>
 
   public paises:    Array<Country> = [];
-  public regionMap = { 'Africa': 'África', 'Americas': 'América', 'Asia': 'Asia', 'Europe': 'Europa', 'Oceania': 'Oceanía' };
+  public regionMap  = { 'Africa': 'África', 'Americas': 'América', 'Asia': 'Asia', 'Europe': 'Europa', 'Oceania': 'Oceanía' };
   public regiones:  Array<Region>  = [];
   public fronteras: Array<Country> = [];
   public loading    = false;
@@ -43,7 +43,11 @@ export class SelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.regiones = this.selectorCountryService.regiones;
+    this.onRegionChanged();
+    this.onCountryChanged();
+  };
 
+  onRegionChanged(): void {
     this.miFormulario.get('region')?.valueChanges
       .pipe(
         tap(() => this.miFormulario.get('pais')?.reset('')),
@@ -53,7 +57,9 @@ export class SelectorComponent implements OnInit {
         this.loading = false;
         this.paises = paises
       });
+  }
 
+  onCountryChanged(): void {
     this.miFormulario.get('pais')?.valueChanges
       .pipe(
         tap(() => this.fronteras = []),
@@ -65,7 +71,7 @@ export class SelectorComponent implements OnInit {
           this.fronteras = countries;
           this.loading = false;
         });
-  };
+  }
 
   saveData(): void {
     console.log(this.miFormulario.value);

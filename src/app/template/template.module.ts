@@ -27,8 +27,8 @@ import { TemplateRoutingModule } from './template-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    
+
     TemplateRoutingModule
   ]
 })
-export class TemplateModule { }
+export default class TemplateModule { }

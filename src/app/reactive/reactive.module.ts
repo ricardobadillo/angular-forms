@@ -22,8 +22,8 @@ import { ReactiveRoutingModule } from './reactive-routing.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    
+
     ReactiveRoutingModule
   ]
 })
-export class ReactiveModule { }
+export default class ReactiveModule { }

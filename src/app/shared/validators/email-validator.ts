@@ -10,7 +10,7 @@ import { delay, map } from 'rxjs/operators';
 
 
 @Injectable({ providedIn: 'root' })
-export class EmailValidatorService implements AsyncValidator {
+export class EmailValidator implements AsyncValidator {
 
 
   constructor( private http: HttpClient ) { }

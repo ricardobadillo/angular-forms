@@ -5,26 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-  },
-  {
-    path: 'basics',
-    loadChildren: () => import('./basics/basics.module').then(m => m.BasicsModule)
-  },
-  {
-    path: 'reactive',
-    loadChildren: ()=> import('./reactive/reactive.module').then(m => m.ReactiveModule)
-  },
-  {
-    path: 'selector',
-    loadChildren: () => import('./selector/selector.module').then(m => m.SelectorModule)
-  },
-  {
-    path: 'template',
-    loadChildren: ()=> import('./template/template.module').then(m => m.TemplateModule)
-  },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module'), },
+  { path: 'basics', loadChildren: () => import('./basics/basics.module'), },
+  { path: 'reactive', loadChildren: ()=> import('./reactive/reactive.module'), },
+  { path: 'selector', loadChildren: () => import('./selector/selector.module'), },
+  { path: 'template', loadChildren: ()=> import('./template/template.module'), },
   { path: '**', redirectTo: 'template' }
 ];
 

@@ -24,4 +24,4 @@ import { BasicsRoutingModule } from './basics-routing.module';
     BasicsRoutingModule
   ]
 })
-export class BasicsModule { }
+export default class BasicsModule { }
