@@ -15,7 +15,7 @@ export class EmailValidator implements AsyncValidator {
 
   constructor( private http: HttpClient ) { }
 
-  validate(control: AbstractControl): Observable<ValidationErrors | null> {
+  public validate(control: AbstractControl): Observable<ValidationErrors | null> {
 
     const email = control.value;
 

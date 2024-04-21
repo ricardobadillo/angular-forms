@@ -20,18 +20,19 @@ export class DynamicsComponent {
   }>;
 
   get favoritosArray(): FormArray {
-    console.log(this.miFormulario.get('favoritos'));
     return this.miFormulario.get('favoritos') as FormArray;
   }
 
 
   constructor(private formBuilder: FormBuilder) {
     this.miFormulario = this.formBuilder.group({
-      nombre: new FormControl('', { nonNullable: true, validators: [ Validators.required, Validators.minLength(3) ] }),
+      nombre: new FormControl('', { nonNullable: true,
+        validators: [ Validators.required, Validators.minLength(3) ]
+      }),
       favoritos: new FormArray([
-        new FormControl('Metal Gear', { nonNullable: true, validators: [ Validators.required ] }),
-        new FormControl('Death Stranding', { nonNullable: true, validators: [ Validators.required ] })
-      ], Validators.required)
+        new FormControl('Sonic', { nonNullable: true, validators: [ Validators.required ] }),
+        new FormControl('Kirby', { nonNullable: true, validators: [ Validators.required ] })
+      ], { validators: [ Validators.required ] })
     });
   }
 
@@ -54,8 +55,8 @@ export class DynamicsComponent {
   };
 
   saveData(): void {
-    console.log('Posteo correcto');
     console.log(this.miFormulario.value);
+
     this.miFormulario.reset();
   };
 }

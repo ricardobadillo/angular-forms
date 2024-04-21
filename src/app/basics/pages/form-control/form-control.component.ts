@@ -6,18 +6,16 @@ import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-control',
-  styleUrls: ['./form-control.component.scss'],
   templateUrl: './form-control.component.html',
 })
 export class FormControlComponent {
 
   // El nombre del error es el nombre del validador.
-  ageField = new FormControl(0, [ Validators.min(0) ]);
+  public ageField = new FormControl(0, { validators: [ Validators.min(0) ] });
+  public nameField = new FormControl('Ricardo');
+  public categoryField = new FormControl('categoria-3');
 
-  nameField = new FormControl('Ricardo');
-  categoryField = new FormControl('categoria-3');
-
-  categorias = [
+  public categorias = [
     { id: 'categoria-1', name: 'Categoría 1' },
     { id: 'categoria-2', name: 'Categoría 2' },
     { id: 'categoria-3', name: 'Categoría 3' },
@@ -27,12 +25,4 @@ export class FormControlComponent {
 
   agreeField = new FormControl('De acuerdo');
   genderField = new FormControl('M');
-
-  /*
-    Orden de las validaciones en un form control.
-
-    otherField = new FormControl(null, sync, async);
-  */
-
-  constructor() { }
 }

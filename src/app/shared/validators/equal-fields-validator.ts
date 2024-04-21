@@ -7,7 +7,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 @Injectable({ providedIn: 'root' })
 export class EqualFiedls {
 
-  equalFields(password: string, confirm: string): ValidationErrors | null {
+  public equalFields(password: string, confirm: string): ValidationErrors | null {
 
     return (formControl: AbstractControl): ValidationErrors | null => {
 

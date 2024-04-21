@@ -20,7 +20,7 @@ import { SelectorCountryService } from '../../services/selector-country.service'
 })
 export class SelectorComponent implements OnInit {
 
-  miFormulario: FormGroup<{
+  public miFormulario: FormGroup<{
     region: FormControl<string>;
     pais: FormControl<string>;
     fronteras: FormControl<string>;
@@ -47,7 +47,7 @@ export class SelectorComponent implements OnInit {
     this.onCountryChanged();
   };
 
-  onRegionChanged(): void {
+  public onRegionChanged(): void {
     this.miFormulario.get('region')?.valueChanges
       .pipe(
         tap(() => this.miFormulario.get('pais')?.reset('')),
@@ -59,7 +59,7 @@ export class SelectorComponent implements OnInit {
       });
   }
 
-  onCountryChanged(): void {
+  public onCountryChanged(): void {
     this.miFormulario.get('pais')?.valueChanges
       .pipe(
         tap(() => this.fronteras = []),
@@ -73,7 +73,7 @@ export class SelectorComponent implements OnInit {
         });
   }
 
-  saveData(): void {
+  public saveData(): void {
     console.log(this.miFormulario.value);
   };
 }

@@ -17,14 +17,13 @@ interface Persona {
 @Component({
   selector: 'app-dynamics',
   templateUrl: './dynamics.component.html',
-  styleUrls: ['./dynamics.component.scss']
 })
 export class DynamicsComponent {
 
-  enableForm = false;
-  nuevoFavorito = '';
+  public enableForm = false;
+  public nuevoFavorito = '';
 
-  persona: Persona = {
+  public persona: Persona = {
     nombre: '',
     favoritos: [
       { id: 1, nombre: 'Doom' },
@@ -32,26 +31,15 @@ export class DynamicsComponent {
     ]
   };
 
+  @ViewChild('inputValue') public inputValue!: ElementRef;
+  @ViewChild('miFormulario') public miFormulario!: NgForm;
+
   get invalidName(): boolean | null {
     return this.miFormulario?.controls.nombre?.errors
         && this.miFormulario?.controls.nombre?.touched;
   }
 
-  @ViewChild('inputValue') inputValue!: ElementRef;
-  @ViewChild('miFormulario') miFormulario!: NgForm;
-
-
-  constructor() { }
-
-  onKey(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.nuevoFavorito = inputElement.value;
-
-    this.nuevoFavorito.length > 0 ? this.enableForm = true : this.enableForm = false;
-  }
-
-  addFavorite(): void {
-
+  public addFavorite(): void {
     const nuevoFavorito: Favorito = {
       id: this.persona.favoritos.length + 1,
       nombre: this.nuevoFavorito
@@ -62,20 +50,18 @@ export class DynamicsComponent {
     this.enableForm = false;
   }
 
-  deleteFavorite(index: number): void {
+  public deleteFavorite(index: number): void {
     this.persona.favoritos.splice(index, 1);
   }
 
-  saveData(): void {
-    console.log('Posteo correcto');
-    console.log(this.persona)
-    // console.log(this.miFormulario.value);
-    // this.miFormulario.resetForm({
-    //   nombre: '',
-    //   favoritos: [
-    //     { id: 1, nombre: 'Doom' },
-    //     { id: 2, nombre: 'Outlast' }
-    //   ]
-    // });
+  public onKey(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.nuevoFavorito = inputElement.value;
+
+    this.nuevoFavorito.length > 0 ? this.enableForm = true : this.enableForm = false;
+  }
+
+  public saveData(): void {
+    console.log(this.persona);
   }
 }

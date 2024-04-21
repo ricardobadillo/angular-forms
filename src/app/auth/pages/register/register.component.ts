@@ -17,30 +17,13 @@ import { cantBeMe, emailPattern, namePattern } from 'src/app/shared/validators/v
 })
 export class RegisterComponent {
 
-  miFormulario: FormGroup<{
+  public miFormulario: FormGroup<{
     nombre: FormControl<string>;
     email: FormControl<string>;
     username: FormControl<string>;
     password: FormControl<string>;
     confirm: FormControl<string>;
   }>
-
-  get emailMessageError(): string {
-
-    const errors = this.miFormulario.get('email')?.errors;
-
-    if (errors?.required) {
-      return 'El email es obligatorio';
-
-    } else if (errors?.pattern) {
-      return 'No tiene formato de email';
-
-    } else if (errors?.emailExiste) {
-      return 'El email ya existe';
-    }
-
-    return '';
-  };
 
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -67,11 +50,28 @@ export class RegisterComponent {
     }, { validators: this.equalFields.equalFields('password', 'confirm') } as FormControlOptions);
   }
 
-  invalidField(field: string): boolean | undefined {
+  get emailMessageError(): string {
+
+    const errors = this.miFormulario.get('email')?.errors;
+
+    if (errors?.required) {
+      return 'El email es obligatorio';
+
+    } else if (errors?.pattern) {
+      return 'No tiene formato de email';
+
+    } else if (errors?.emailExiste) {
+      return 'El email ya existe';
+    }
+
+    return '';
+  };
+
+  public invalidField(field: string): boolean | undefined {
     return this.miFormulario.get(field)?.invalid && this.miFormulario.get(field)?.touched;
   };
 
-  formSubmit(): void {
+  public formSubmit(): void {
     console.log(this.miFormulario.value);
 
     this.miFormulario.markAllAsTouched();

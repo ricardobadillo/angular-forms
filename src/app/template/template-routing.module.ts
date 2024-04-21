@@ -13,10 +13,10 @@ const routes: Routes = [
   { path: 'basics', component: BasicsComponent },
   { path: 'dynamics', component: DynamicsComponent },
   { path: 'switches', component: SwitchesComponent },
-  { path: '**', component: BasicsComponent }
+  { path: '**', component: BasicsComponent },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ]
+  imports: [ RouterModule.forChild(routes) ],
 })
 export class TemplateRoutingModule { }

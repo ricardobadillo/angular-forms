@@ -16,28 +16,28 @@ interface MenuItem {
 })
 export class SidemenuComponent {
 
-  authMenu: MenuItem[] = [
-    { name: 'Registro de usuario', route: './auth/register' }
+  public authMenu: Array<MenuItem> = [
+    { name: 'Registro de usuario', route: './auth/register' },
   ];
 
-  basicsMenu: MenuItem[] = [
+  public basicsMenu: Array<MenuItem> = [
     { name: 'Form Control', route: './basics/form-control' },
     { name: 'Form Group', route: './basics/form-group' },
   ];
 
-  reactiveMenu: MenuItem[] = [
+  public reactiveMenu: Array<MenuItem> = [
     { name: 'Básicos', route: './reactive/basics' },
     { name: 'Dinámicos', route: './reactive/dynamics' },
-    { name: 'Switches', route: './reactive/switches' }
+    { name: 'Switches', route: './reactive/switches' },
   ];
 
-  selectorMenu: MenuItem[] = [
-    { name: 'Ejemplo', route: './selector/selector' }
+  public selectorMenu: Array<MenuItem> = [
+    { name: 'Ejemplo', route: './selector/selector' },
   ];
 
-  templateMenu: MenuItem[] = [
+  public templateMenu: Array<MenuItem> = [
     { name: 'Básicos', route: './template/basics' },
     { name: 'Dinámicos', route: './template/dynamics' },
-    { name: 'Switches', route: './template/switches' }
+    { name: 'Switches', route: './template/switches' },
   ];
 }

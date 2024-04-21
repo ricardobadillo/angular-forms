@@ -10,16 +10,15 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-basics',
   templateUrl: './basics.component.html',
-  styleUrls: ['./basics.component.scss']
 })
 export class BasicsComponent implements AfterViewInit, OnDestroy {
 
-  statusChangesSubscription?: Subscription;
-  valuesChangesSubscription?: Subscription;
+  public statusChangesSubscription?: Subscription;
+  public valuesChangesSubscription?: Subscription;
 
-  initialForm = { producto: '', precio: 0, existencia: 0 };
+  public initialForm = { producto: '', precio: 0, existencia: 0 };
 
-  @ViewChild('miFormulario') miFormulario!: NgForm;
+  @ViewChild('miFormulario') public miFormulario!: NgForm;
 
   get invalidProductName(): boolean {
     return this.miFormulario?.controls.producto?.invalid
@@ -36,9 +35,6 @@ export class BasicsComponent implements AfterViewInit, OnDestroy {
         && this.miFormulario?.controls.existencia?.dirty;
   }
 
-
-  constructor() { }
-
   ngAfterViewInit(): void {
     //❗ Ver el status del formulario de manera reactiva.
     this.statusChangesSubscription = this.miFormulario.statusChanges?.subscribe(console.log);
@@ -52,9 +48,9 @@ export class BasicsComponent implements AfterViewInit, OnDestroy {
     this.valuesChangesSubscription?.unsubscribe();
   }
 
-  saveData(): void {
-    console.log('Posteo correcto');
+  public saveData(): void {
     console.log(this.miFormulario.value);
+
     this.miFormulario.resetForm({ producto: '', precio: 0, existencia: 0 });
   }
 }

@@ -11,9 +11,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class SwitchesComponent implements OnInit {
 
   miFormulario: FormGroup<{
-    genero: FormControl<string>,
-    notificaciones: FormControl<boolean>,
-    terminos: FormControl<boolean>
+    genero: FormControl<string>;
+    notificaciones: FormControl<boolean>;
+    terminos: FormControl<boolean>;
   }>;
 
   persona = { genero: 'F', notificaciones: true };
@@ -36,6 +36,7 @@ export class SwitchesComponent implements OnInit {
     delete formValue.terminos;
 
     this.persona = formValue as { genero: string, notificaciones: boolean };
+
     console.log(this.persona);
   }
 }

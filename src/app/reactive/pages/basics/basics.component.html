@@ -16,7 +16,7 @@
             formControlName="producto"
           >
 
-          <span class="form-text text-danger" *ngIf="invalidProductName">
+          <span class="form-text text-danger" *ngIf="invalidField('producto')">
             El nombre debe tener más de 3 letras
           </span>
         </div>
@@ -34,7 +34,7 @@
             formControlName="precio"
           >
 
-          <span class="form-text text-danger" *ngIf="invalidPrice">
+          <span class="form-text text-danger" *ngIf="invalidField('precio')">
             El precio debe ser mayor o igual a 0
           </span>
         </div>
@@ -52,7 +52,7 @@
             formControlName="existencia"
           >
 
-          <span class="form-text text-danger" *ngIf="invalidExistence">
+          <span class="form-text text-danger" *ngIf="invalidField('existencia')">
             La existencia debe ser mayor o igual a 0
           </span>
         </div>
